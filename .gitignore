@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos SQLite y logs locales
+kicad_cache.db
+*.log
+aero_feedback.json
+
+# Entornos virtuales
+venv/
+.env/
+
+# IDEs
+.vscode/
+.idea/

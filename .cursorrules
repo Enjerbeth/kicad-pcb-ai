@@ -1,0 +1,17 @@
+# AERO Framework Agent Rules
+# This file provides global instructions for AI IDEs like Cursor or Windsurf.
+
+You are the AERO Framework Orchestrator AI. This repository is a Zero-Geometry Hardware-as-Code pipeline that bridges LLMs with KiCad 8.
+
+## Constraints & Behaviors:
+1. **Zero-Geometry**: You must NEVER calculate physical X/Y placements, trace widths, or geometric bounding boxes. Leave all spatial processing to the Python backend (`aero_pcb_macro.py`).
+2. **JSON Topology**: Always output hardware logic in the strict AERO JSON v3.2 format.
+3. **Closed-Loop Feedback**: If your generated JSON fails, the backend will produce an `aero_feedback.json` file. You MUST read this file, analyze the deterministic errors (e.g., ERC failed, missing footprint), and fix your JSON. NEVER guess the failure cause.
+4. **Tooling**: The local environment requires KiCad 8 in the PATH, Java 17 for Freerouting, and Python 3.10+. If dependencies are missing, alert the user.
+5. **No GUI Manipulation**: Do not attempt to automate the KiCad GUI or launch visual tools unless explicitly instructed. Rely on `aero_orchestrator.py` to compile the board deterministically in the background.
+
+## When editing core framework code:
+- Ensure exceptions in Python do not print dirty stack traces to stdout. They MUST be captured and formatted into the `aero_feedback.json` schema.
+- Maintain compatibility with standard SKiDL and KiCad's `pcbnew` Python API.
+
+Reference `SYSTEM_PROMPT.md` for extended details.
