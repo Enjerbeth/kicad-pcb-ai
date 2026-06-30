@@ -5,9 +5,9 @@ import glob
 from pathlib import Path
 
 # Configuración y Rutas (Ajustables mediante variables de entorno)
-KICAD_SHARE_DIR = os.environ.get('KICAD_SYMBOL_DIR', r"E:\Program Files (x86)\share\kicad\symbols").replace(r'\symbols', '')
-SYMBOL_DIR = os.path.join(KICAD_SHARE_DIR, "symbols")
-FOOTPRINT_DIR = os.path.join(KICAD_SHARE_DIR, "footprints")
+KICAD_SHARE_DIR = os.environ.get('KICAD_SYMBOL_DIR', os.path.join(os.path.dirname(os.path.abspath(__file__)), "aero_custom_libs"))
+SYMBOL_DIR = KICAD_SHARE_DIR
+FOOTPRINT_DIR = KICAD_SHARE_DIR
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kicad_cache.db")
 

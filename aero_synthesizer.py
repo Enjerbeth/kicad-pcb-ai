@@ -5,7 +5,8 @@ from pathlib import Path
 
 # Se requiere tener skidl instalado: pip install skidl
 try:
-    from skidl import Part, PartUnit, Net, generate_netlist, ERC
+    from skidl import Part, Net, generate_netlist, ERC, KICAD9, set_default_tool
+    set_default_tool(KICAD9)
 except ImportError:
     print("[-] SKiDL no está instalado. Ejecuta: pip install skidl")
     exit(1)
@@ -34,7 +35,7 @@ class AeroSynthesizer:
             
             # Instanciar en SKiDL
             try:
-                part = Part(lib_name, sym_name, footprint=footprint, value=value, ref=ref)
+                part = Part(lib_name, sym_name, footprint=footprint, value=value, ref=ref, tool=KICAD9)
                 self.parts_cache[ref] = part
             except Exception as e:
                 # CORRECCIÓN: Se elimina el mock fallback. El error debe propagarse al orquestador.
@@ -68,9 +69,8 @@ class AeroSynthesizer:
                 target_part = part
                 
                 if c_unit_letter:
-                    unit_num = ord(c_unit_letter.upper()) - 64
                     try:
-                        target_part = PartUnit(part, unit=unit_num)
+                        target_part = part.unit[c_unit_letter]
                     except Exception as e:
                         raise RuntimeError(f"Fallo accediendo a la unidad '{c_unit_letter}' del componente '{c_ref}': {e}")
                 

@@ -168,8 +168,16 @@ class ShadowInterrogator:
         # 2. Validación Semántica contra SQLite
         cursor = self.conn.cursor()
         
+        # Extraer unresolved_parts
+        unresolved_refs = json_data.get("unresolved_parts", [])
+
         for ref, comp in components_map.items():
             part_def = comp["part_def"]
+            
+            # Saltamos la validación en DB si el componente fue declarado como unresolved
+            if ref in unresolved_refs:
+                continue
+                
             if ":" not in part_def:
                 errors.append({
                     "code": "LIBRARY_NOT_FOUND",
