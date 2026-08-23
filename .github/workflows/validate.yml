@@ -1,0 +1,92 @@
+name: AERO Framework CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Lint & Validate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint with ruff
+        run: |
+          ruff check . --output-format=github
+
+      - name: Validate aero_feedback.json schema
+        run: |
+          python -c "
+          import json
+          import jsonschema
+          import sys
+          import os
+
+          FEEDBACK_SCHEMA = {
+              'type': 'object',
+              'required': ['feedback_status', 'retry_number', 'max_retries', 'errors'],
+              'properties': {
+                  'feedback_status': {'type': 'string'},
+                  'retry_number': {'type': 'integer', 'minimum': 0},
+                  'max_retries': {'type': 'integer', 'minimum': 1},
+                  'errors': {
+                      'type': 'array',
+                      'items': {
+                          'type': 'object',
+                          'required': ['code', 'severity', 'description', 'instruction'],
+                          'properties': {
+                              'code': {'type': 'string'},
+                              'severity': {'type': 'string', 'enum': ['error', 'warning']},
+                              'description': {'type': 'string'},
+                              'instruction': {'type': 'string'},
+                              'affected_refs': {
+                                  'type': 'array',
+                                  'items': {'type': 'string'}
+                              },
+                              'context': {'type': 'object'}
+                          }
+                      }
+                  }
+              }
+          }
+
+          feedback_path = 'aero_feedback.json'
+          if not os.path.exists(feedback_path):
+              print('INFO: aero_feedback.json not found, skipping schema validation.')
+              sys.exit(0)
+
+          with open(feedback_path, 'r', encoding='utf-8') as f:
+              data = json.load(f)
+
+          jsonschema.validate(instance=data, schema=FEEDBACK_SCHEMA)
+          print(f'OK: aero_feedback.json is valid ({len(data[\"errors\"])} error(s) recorded).')
+          "
+
+      - name: Run tests (if present)
+        run: |
+          if [ -d "tests" ]; then
+            python -m pytest tests/ -v
+          else
+            echo "INFO: No tests/ directory found, skipping."
+          fi
