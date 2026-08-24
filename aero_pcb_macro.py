@@ -1,6 +1,7 @@
 import sys
 import json
 import math
+import numpy as np
 import pcbnew
 
 def draw_board_outline(board, width_mm, height_mm, origin_x_mm=100.0, origin_y_mm=100.0):
@@ -24,53 +25,106 @@ def draw_board_outline(board, width_mm, height_mm, origin_x_mm=100.0, origin_y_m
         segment.SetWidth(pcbnew.FromMM(0.1))
         board.Add(segment)
 
-def resolve_collision_spiral(board, module, anchor_x_mm, anchor_y_mm, step_mm=1.27, max_attempts=100):
+class SpatialPlacementEngine:
     """
-    Algoritmo de Espiral Cuadrada determinista usando Bounding Boxes.
-    Evita que las huellas colisionen buscando el espacio libre más cercano al ancla.
+    Motor de posicionamiento espacial y colisiones AABB vectorizado con NumPy.
+    Evita llamadas repetitivas y bloqueos por la interfaz C++/SWIG de KiCad.
     """
-    step_iu = pcbnew.FromMM(step_mm)
-    anchor_pos = pcbnew.VECTOR2I(pcbnew.FromMM(anchor_x_mm), pcbnew.FromMM(anchor_y_mm))
-    
-    directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-    dir_idx = 0
-    segment_length = 1
-    segment_passed = 0
-    
-    current_pos = pcbnew.VECTOR2I(anchor_pos.x, anchor_pos.y)
-    module.SetPosition(current_pos)
-    
-    for attempt in range(max_attempts):
-        collision = False
-        module_box = module.GetBoundingBox()
+    def __init__(self, board):
+        self.board = board
+        self.boxes = []
+        self._sync_boxes()
+
+    def _sync_boxes(self):
+        self.boxes = []
+        for fp in self.board.GetFootprints():
+            ref = fp.GetReference()
+            bbox = fp.GetBoundingBox()
+            self.boxes.append((
+                ref,
+                bbox.GetX(),
+                bbox.GetY(),
+                bbox.GetX() + bbox.GetWidth(),
+                bbox.GetY() + bbox.GetHeight()
+            ))
+
+    def update_box(self, ref, x_min, y_min, x_max, y_max):
+        for i, b in enumerate(self.boxes):
+            if b[0] == ref:
+                self.boxes[i] = (ref, x_min, y_min, x_max, y_max)
+                return
+        self.boxes.append((ref, x_min, y_min, x_max, y_max))
+
+    def check_collision_vectorized(self, target_ref, t_xmin, t_ymin, t_xmax, t_ymax):
+        if not self.boxes:
+            return False
+        other_boxes = [b[1:] for b in self.boxes if b[0] != target_ref]
+        if not other_boxes:
+            return False
+        arr = np.array(other_boxes, dtype=np.int64)
         
-        for other_module in board.GetFootprints():
-            if other_module.GetReference() == module.GetReference():
-                continue
-            if other_module.GetBoundingBox().Intersects(module_box):
-                collision = True
-                break
-                
-        if not collision:
-            return True 
+        # Solapamiento de rectángulos AABB en 2D
+        overlap_x = (t_xmin < arr[:, 2]) & (t_xmax > arr[:, 0])
+        overlap_y = (t_ymin < arr[:, 3]) & (t_ymax > arr[:, 1])
+        return bool(np.any(overlap_x & overlap_y))
+
+    def resolve_spiral(self, module, anchor_x_mm, anchor_y_mm, step_mm=1.27, max_attempts=150):
+        ref = module.GetReference()
+        step_iu = pcbnew.FromMM(step_mm)
+        anchor_x_iu = pcbnew.FromMM(anchor_x_mm)
+        anchor_y_iu = pcbnew.FromMM(anchor_y_mm)
+        
+        bbox = module.GetBoundingBox()
+        w = bbox.GetWidth()
+        h = bbox.GetHeight()
+        
+        # Paso dinámico adaptable al tamaño del footprint
+        dyn_step = max(step_iu, min(w, h) // 4)
+        
+        pos = module.GetPosition()
+        offset_x = bbox.GetX() - pos.x
+        offset_y = bbox.GetY() - pos.y
+        
+        cur_x = anchor_x_iu
+        cur_y = anchor_y_iu
+        
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        dir_idx = 0
+        segment_length = 1
+        segment_passed = 0
+        
+        for _ in range(max_attempts):
+            t_xmin = cur_x + offset_x
+            t_ymin = cur_y + offset_y
+            t_xmax = t_xmin + w
+            t_ymax = t_ymin + h
             
-        dx, dy = directions[dir_idx]
-        current_pos = pcbnew.VECTOR2I(current_pos.x + (dx * step_iu), current_pos.y + (dy * step_iu))
-        module.SetPosition(current_pos)
-        
-        segment_passed += 1
-        if segment_passed == segment_length:
-            segment_passed = 0
-            dir_idx = (dir_idx + 1) % 4
-            if dir_idx % 2 == 0:
-                segment_length += 1
+            if not self.check_collision_vectorized(ref, t_xmin, t_ymin, t_xmax, t_ymax):
+                final_pos = pcbnew.VECTOR2I(int(cur_x), int(cur_y))
+                module.SetPosition(final_pos)
+                self.update_box(ref, t_xmin, t_ymin, t_xmax, t_ymax)
+                return True
                 
-    return False
+            dx, dy = directions[dir_idx]
+            cur_x += dx * dyn_step
+            cur_y += dy * dyn_step
+            
+            segment_passed += 1
+            if segment_passed == segment_length:
+                segment_passed = 0
+                dir_idx = (dir_idx + 1) % 4
+                if dir_idx % 2 == 0:
+                    segment_length += 1
+                    
+        module.SetPosition(pcbnew.VECTOR2I(int(cur_x), int(cur_y)))
+        return False
 
 def apply_layout_strategies(board, strategies, default_origin_x=100.0, default_origin_y=100.0):
     """
     Interpreta las directivas del LLM (grid, radial, absolute_cluster) y asigna coordenadas físicas.
     """
+    engine = SpatialPlacementEngine(board)
+
     for strategy in strategies:
         strat_type = strategy.get("strategy_type")
         targets = strategy.get("target_refs", [])
@@ -123,8 +177,8 @@ def apply_layout_strategies(board, strategies, default_origin_x=100.0, default_o
             # Establecer rotación antes del motor de colisión para que el Bounding Box sea preciso
             module.SetOrientation(pcbnew.EDA_ANGLE(rotation_deg, pcbnew.DEGREES_T))
             
-            # Ejecutar posicionamiento con evasión de colisiones
-            success = resolve_collision_spiral(board, module, target_x_mm, target_y_mm)
+            # Ejecutar posicionamiento con evasión de colisiones vectorizada
+            success = engine.resolve_spiral(module, target_x_mm, target_y_mm)
             if not success:
                 print(f"     [!] Colisión irresoluble para {ref} tras agotar la espiral.")
 

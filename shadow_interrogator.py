@@ -129,34 +129,62 @@ HAC_SCHEMA = {
     }
 }
 
+_SCHEMA_VALIDATOR = jsonschema.Draft202012Validator(HAC_SCHEMA) if hasattr(jsonschema, "Draft202012Validator") else jsonschema.Draft7Validator(HAC_SCHEMA)
+
 class ShadowInterrogator:
     def __init__(self, db_path=DB_PATH):
         self.db_path = db_path
         self.conn = None
+        self._comp_cache = {}
+        self._pins_cache = {}
+        self._fp_cache = {}
 
     def connect(self):
         self.conn = sqlite3.connect(self.db_path)
         self.conn.row_factory = sqlite3.Row
+        self.conn.execute("PRAGMA cache_size = -16000;")
+        self.conn.execute("PRAGMA mmap_size = 67108864;")
 
     def disconnect(self):
         if self.conn:
             self.conn.close()
+
+    def _get_component(self, lib_name, sym_name):
+        key = (lib_name, sym_name)
+        if key not in self._comp_cache:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT id, total_pins, total_units FROM components WHERE library=? AND symbol=?", (lib_name, sym_name))
+            row = cursor.fetchone()
+            self._comp_cache[key] = dict(row) if row else None
+        return self._comp_cache[key]
+
+    def _get_pins(self, comp_id):
+        if comp_id not in self._pins_cache:
+            cursor = self.conn.cursor()
+            cursor.execute("SELECT pin_number, pin_name FROM pins WHERE component_id=?", (comp_id,))
+            rows = cursor.fetchall()
+            self._pins_cache[comp_id] = {
+                "numbers": [r["pin_number"] for r in rows],
+                "names": [r["pin_name"] for r in rows],
+                "all": [r["pin_number"] for r in rows] + [r["pin_name"] for r in rows]
+            }
+        return self._pins_cache[comp_id]
 
     def validate_json(self, json_data):
         """Valida la sintaxis del JSON y la coherencia semántica contra la DB de KiCad."""
         self.connect()
         errors = []
         
-        # 1. Validación de Esquema (Sintáctica)
-        try:
-            jsonschema.validate(instance=json_data, schema=HAC_SCHEMA)
-        except jsonschema.exceptions.ValidationError as e:
-            errors.append({
-                "code": "VALIDATION_FAILED",
-                "severity": "error",
-                "description": f"Error de esquema JSON: {e.message}",
-                "instruction": "Corrige el JSON para cumplir con el esquema v3.2 estricto."
-            })
+        # 1. Validación de Esquema (Sintáctica optimizada)
+        schema_errors = list(_SCHEMA_VALIDATOR.iter_errors(json_data))
+        if schema_errors:
+            for e in schema_errors:
+                errors.append({
+                    "code": "VALIDATION_FAILED",
+                    "severity": "error",
+                    "description": f"Error de esquema JSON: {e.message}",
+                    "instruction": "Corrige el JSON para cumplir con el esquema v3.2 estricto."
+                })
             self.disconnect()
             return self._build_feedback(errors)
 
@@ -165,10 +193,7 @@ class ShadowInterrogator:
         for comp in json_data.get("components", []):
             components_map[comp["ref"]] = comp
             
-        # 2. Validación Semántica contra SQLite
-        cursor = self.conn.cursor()
-        
-        # Extraer unresolved_parts
+        # 2. Validación Semántica contra SQLite (con caché LRU)
         unresolved_refs = json_data.get("unresolved_parts", [])
 
         for ref, comp in components_map.items():
@@ -190,9 +215,8 @@ class ShadowInterrogator:
                 
             lib_name, sym_name = part_def.split(":", 1)
             
-            # Consultar si el componente existe en la cache
-            cursor.execute("SELECT id, total_pins, total_units FROM components WHERE library=? AND symbol=?", (lib_name, sym_name))
-            db_comp = cursor.fetchone()
+            # Consultar si el componente existe en la cache / DB
+            db_comp = self._get_component(lib_name, sym_name)
             
             if not db_comp:
                 errors.append({
@@ -204,18 +228,15 @@ class ShadowInterrogator:
                 })
                 continue
             
-            # Extraer pines válidos para el contexto
-            cursor.execute("SELECT pin_number, pin_name FROM pins WHERE component_id=?", (db_comp["id"],))
-            db_pins = [row["pin_number"] for row in cursor.fetchall()]
-            
-            # Validar footprint en DB
-            fp_def = comp["footprint"]
+            # Validar footprint en DB si aplica
+            fp_def = comp.get("footprint", "")
             if ":" in fp_def:
                 fp_lib, fp_name = fp_def.split(":", 1)
-                cursor.execute("SELECT id FROM footprints WHERE library=? AND footprint=?", (fp_lib, fp_name))
-                if not cursor.fetchone():
-                    # Para el interrogador, solo es un warning si la huella no está (podría instalarse luego)
-                    pass
+                fp_key = (fp_lib, fp_name)
+                if fp_key not in self._fp_cache:
+                    cursor = self.conn.cursor()
+                    cursor.execute("SELECT id FROM footprints WHERE library=? AND footprint=?", (fp_lib, fp_name))
+                    self._fp_cache[fp_key] = cursor.fetchone() is not None
 
         # 3. Validación de Redes y Conexiones
         for net in json_data.get("nets", []):
@@ -261,23 +282,20 @@ class ShadowInterrogator:
                 else:
                     physical_pins.append(c_pin)
 
-                # Verificar contra la DB (solo si el componente existe en DB)
+                # Verificar contra la DB usando la caché
                 part_def = comp_def["part_def"]
                 if ":" in part_def:
                     lib_name, sym_name = part_def.split(":", 1)
-                    cursor.execute("SELECT id, total_pins, total_units FROM components WHERE library=? AND symbol=?", (lib_name, sym_name))
-                    db_comp = cursor.fetchone()
+                    db_comp = self._get_component(lib_name, sym_name)
                     
                     if db_comp:
                         if db_comp["total_pins"] == -1:
                             # Saltamos la validación estricta de pines físicos para los componentes derivados (extends)
-                            # Dejamos que SKiDL lo verifique en la fase de síntesis.
                             pass
                         else:
-                            cursor.execute("SELECT pin_number, pin_name FROM pins WHERE component_id=?", (db_comp["id"],))
-                            valid_pins = [row["pin_number"] for row in cursor.fetchall()]
-                            valid_pin_names = [row["pin_name"] for row in cursor.fetchall()] # A veces se usan nombres de pines en lugar de números
-                            all_valid = valid_pins + valid_pin_names
+                            pin_info = self._get_pins(db_comp["id"])
+                            all_valid = pin_info["all"]
+                            valid_pins = pin_info["numbers"]
                             
                             for p in physical_pins:
                                 if p not in all_valid:
@@ -296,7 +314,6 @@ class ShadowInterrogator:
                                 
                         # Verificar multi-unidad
                         if db_comp["total_units"] > 1 and not c_unit:
-                            # Convertimos 1, 2, 3 a A, B, C para el LLM
                             valid_units_letters = [chr(64 + i) for i in range(1, db_comp["total_units"] + 1)]
                             errors.append({
                                 "code": "UNIT_MISMATCH",

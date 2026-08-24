@@ -11,8 +11,17 @@ FOOTPRINT_DIR = KICAD_SHARE_DIR
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kicad_cache.db")
 
+def configure_sqlite_pragmas(conn):
+    """Configura PRAGMAs de alto rendimiento para acelerar lectura y escritura masiva."""
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA journal_mode = WAL;")
+    cursor.execute("PRAGMA cache_size = -64000;")
+    cursor.execute("PRAGMA mmap_size = 268435456;")
+    cursor.execute("PRAGMA synchronous = NORMAL;")
+
 def setup_database(conn):
     """Inicializa el esquema de la base de datos SQLite (Zero-RAM footprint para el Middleware)."""
+    configure_sqlite_pragmas(conn)
     cursor = conn.cursor()
     cursor.executescript('''
         DROP TABLE IF EXISTS pins;
@@ -47,6 +56,7 @@ def setup_database(conn):
         
         CREATE INDEX idx_comp_lookup ON components(library, symbol);
         CREATE INDEX idx_foot_lookup ON footprints(library, footprint);
+        CREATE INDEX IF NOT EXISTS idx_pins_component_id ON pins(component_id);
     ''')
     conn.commit()
     print(f"[+] Base de datos inicializada en: {DB_PATH}")
@@ -127,7 +137,7 @@ def parse_kicad_footprints(footprint_dir_path, conn):
     cursor = conn.cursor()
     lib_name = Path(footprint_dir_path).stem
     
-    footprints_added = 0
+    fps_to_insert = []
     for mod_file in glob.glob(os.path.join(footprint_dir_path, "*.kicad_mod")):
         fp_name = Path(mod_file).stem
         
@@ -139,16 +149,12 @@ def parse_kicad_footprints(footprint_dir_path, conn):
             
         # Búsqueda rápida de la capa Courtyard (F.CrtYd o B.CrtYd)
         has_courtyard = 'F.CrtYd' in content or 'B.CrtYd' in content
+        fps_to_insert.append((lib_name, fp_name, has_courtyard))
         
-        try:
-            cursor.execute("INSERT INTO footprints (library, footprint, has_courtyard) VALUES (?, ?, ?)",
-                           (lib_name, fp_name, has_courtyard))
-            footprints_added += 1
-        except sqlite3.IntegrityError:
-            pass
-            
-    conn.commit()
-    return footprints_added
+    if fps_to_insert:
+        cursor.executemany("INSERT OR IGNORE INTO footprints (library, footprint, has_courtyard) VALUES (?, ?, ?)", fps_to_insert)
+        conn.commit()
+    return len(fps_to_insert)
 
 def run_sync():
     print(f"[*] Iniciando sincronización de librerías KiCad 8 (Cold Indexing)")
