@@ -1,4 +1,5 @@
 import sys
+import os
 import json
 import math
 import numpy as np
@@ -239,7 +240,15 @@ def main():
         sys.exit(1)
         
     print(f"[*] Cargando placa: {board_path}")
-    board = pcbnew.LoadBoard(board_path)
+    if os.path.exists(board_path):
+        board = pcbnew.LoadBoard(board_path)
+    else:
+        board = pcbnew.BOARD()
+        board.SetFileName(board_path)
+    
+    if board is None:
+        board = pcbnew.BOARD()
+        board.SetFileName(board_path)
     
     outline = config.get("board_outline", {})
     draw_board_outline(board, outline.get("width", 50.0), outline.get("height", 50.0))

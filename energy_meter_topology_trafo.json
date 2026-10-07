@@ -1,0 +1,596 @@
+{
+  "project_metadata": {
+    "name": "aero_energy_meter_3p4w_TRAFO",
+    "variant": "PCB-A — Transformador AC-AC Externo (Aislamiento Galvánico Completo)",
+    "metrological_class": "IEC 62053-22 Clase 1 (Vrms/Irms) | Clase 2 (Potencia Reactiva)",
+    "warning": "Los transformadores AC-AC introducen error de fase 0.5–3° no compensable en armónicos. Usar solo para medición de Vrms/Irms. NO apto para medición de calidad de energía (THD, FP preciso).",
+    "units": "mm",
+    "board_outline": {
+      "width": 120.0,
+      "height": 90.0
+    },
+    "layer_count": 2,
+    "copper_pours": ["GND", "AGND"],
+    "design_rules": {
+      "default_track_width": 0.25,
+      "power_track_width": 0.6,
+      "min_clearance": 0.2,
+      "via_diameter": 0.8,
+      "via_drill": 0.4,
+      "hv_clearance_mm": 3.5,
+      "hv_creepage_mm": 4.0,
+      "note": "Los transformadores son EXTERNOS a esta PCB. El riel de 9V AC proveniente del trafo entra por bornera. El peligro HV queda fuera de la placa.",
+      "differential_pairs": [
+        {"net_p": "I1P", "net_n": "I1N"},
+        {"net_p": "I2P", "net_n": "I2N"},
+        {"net_p": "I3P", "net_n": "I3N"},
+        {"net_p": "INP", "net_n": "INN"}
+      ]
+    },
+    "footprint_policy": "prefer_smd"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "part_def": "AeroCustom:ATM90E36A",
+      "footprint": "Package_QFP:TQFP-48_7x7mm_P0.5mm",
+      "value": "ATM90E36A-AU",
+      "circuit_group": "AFE_METROLOGY"
+    },
+    {
+      "ref": "U2",
+      "part_def": "AeroCustom:ESP32-WROOM-32",
+      "footprint": "RF_Module:ESP32-WROOM-32",
+      "value": "ESP32-WROOM-32E",
+      "circuit_group": "MCU_DIGITAL"
+    },
+    {
+      "ref": "U3",
+      "part_def": "AeroCustom:AP2112K-3.3",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "value": "AP2112K-3.3TRG1",
+      "circuit_group": "POWER_AFE",
+      "note": "LDO ultra-bajo ruido dedicado al AFE. PSRR > 65dB. Alimenta AVDD del ATM90E36A."
+    },
+    {
+      "ref": "U4",
+      "part_def": "AeroCustom:AMS1117-3.3",
+      "footprint": "Package_TO_SOT_SMD:SOT-223-3_TabPin2",
+      "value": "AMS1117-3.3",
+      "circuit_group": "POWER_DIGITAL",
+      "note": "LDO para riel digital ESP32. Capacitor polímero 100uF a su salida."
+    },
+    {
+      "ref": "U5",
+      "part_def": "AeroCustom:PC817",
+      "footprint": "Package_DIP:DIP-4_W7.62mm",
+      "value": "PC817",
+      "circuit_group": "RELAY_ISOLATION",
+      "note": "Optoacoplador para mando del relé. Aislamiento entre GPIO17 y la etapa de potencia."
+    },
+    {
+      "ref": "J1",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT1_PhaseA_Input",
+      "circuit_group": "CT_INPUTS",
+      "note": "Bornera industrial para CT SCT-013-000 Fase A. NO jack 3.5mm."
+    },
+    {
+      "ref": "J2",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT2_PhaseB_Input",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J3",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT3_PhaseC_Input",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J4",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT4_Neutral_Input",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J5",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "TRAFO_V1_9VAC_PhaseA",
+      "circuit_group": "VT_TRAFO_INPUTS",
+      "note": "Entrada 9V AC del transformador externo Fase A (230V→9V). El trafo está FUERA de la PCB."
+    },
+    {
+      "ref": "J6",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "TRAFO_V2_9VAC_PhaseB",
+      "circuit_group": "VT_TRAFO_INPUTS"
+    },
+    {
+      "ref": "J7",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "TRAFO_V3_9VAC_PhaseC",
+      "circuit_group": "VT_TRAFO_INPUTS"
+    },
+    {
+      "ref": "J8",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "PWR_5V_IN",
+      "circuit_group": "POWER_IN",
+      "note": "Entrada 5V DC del adaptador. Alimenta LDOs internos."
+    },
+    {
+      "ref": "J9",
+      "part_def": "AeroCustom:Screw_Terminal_01x04",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-4_P5.08mm",
+      "value": "RELAY_LOAD_OUT",
+      "circuit_group": "RELAY_OUTPUT",
+      "note": "Salida del relé para corte de carga AC."
+    },
+    {
+      "ref": "RB1",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN",
+      "note": "Resistencia burden fase A. 13.0Ω 0.1% Thin-Film 1206. TCR≤25ppm/°C. TVS SMAJ6.0CA en paralelo."
+    },
+    {
+      "ref": "RB2",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN"
+    },
+    {
+      "ref": "RB3",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN"
+    },
+    {
+      "ref": "RB4",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN",
+      "note": "Canal neutro / detección de fugas."
+    },
+    {
+      "ref": "RV1",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "100kOhm_0.1pct",
+      "circuit_group": "VT_DIVIDER_TRAFO",
+      "note": "Rtop divisor resistivo post-trafo Fase A. Atenúa 9V AC → <600mVpk para ADC."
+    },
+    {
+      "ref": "RV2",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "100kOhm_0.1pct",
+      "circuit_group": "VT_DIVIDER_TRAFO"
+    },
+    {
+      "ref": "RV3",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "100kOhm_0.1pct",
+      "circuit_group": "VT_DIVIDER_TRAFO"
+    },
+    {
+      "ref": "RVB1",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "3.3kOhm_0.1pct",
+      "circuit_group": "VT_DIVIDER_TRAFO",
+      "note": "Rbottom divisor Fase A. Factor atenuación α=0.0319."
+    },
+    {
+      "ref": "RVB2",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "3.3kOhm_0.1pct",
+      "circuit_group": "VT_DIVIDER_TRAFO"
+    },
+    {
+      "ref": "RVB3",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "3.3kOhm_0.1pct",
+      "circuit_group": "VT_DIVIDER_TRAFO"
+    },
+    {
+      "ref": "D1",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION",
+      "note": "TVS bidireccional ultrarrápido anti-arco CT1. Limita tensión en circuito abierto <9.2V."
+    },
+    {
+      "ref": "D2",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D3",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D4",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D5",
+      "part_def": "AeroCustom:BAV99",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "BAV99",
+      "circuit_group": "VT_CLAMPING",
+      "note": "Par diodos clamping tensión V1. Limita a 3.3V analógico y AGND."
+    },
+    {
+      "ref": "D6",
+      "part_def": "AeroCustom:BAV99",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "BAV99",
+      "circuit_group": "VT_CLAMPING"
+    },
+    {
+      "ref": "D7",
+      "part_def": "AeroCustom:BAV99",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "BAV99",
+      "circuit_group": "VT_CLAMPING"
+    },
+    {
+      "ref": "D8",
+      "part_def": "AeroCustom:SS14",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SS14",
+      "circuit_group": "RELAY_FLYBACK",
+      "note": "Diodo Schottky flyback del relé (ultrafast, reemplaza 1N4007)."
+    },
+    {
+      "ref": "Q1",
+      "part_def": "AeroCustom:AO3400",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "AO3400",
+      "circuit_group": "RELAY_DRIVER"
+    },
+    {
+      "ref": "RLY1",
+      "part_def": "AeroCustom:Relay_12V",
+      "footprint": "Relay_THT:Relay_SPDT_Omron-G5Q-1",
+      "value": "G5Q-1-DC12",
+      "circuit_group": "RELAY_LOAD"
+    },
+    {
+      "ref": "Y1",
+      "part_def": "AeroCustom:Crystal_16.384MHz",
+      "footprint": "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm",
+      "value": "16.384MHz",
+      "circuit_group": "AFE_CLOCK",
+      "note": "Cristal fundamental 16.384MHz CL=18pF C0G. Anillo de guarda en PCB."
+    },
+    {
+      "ref": "RT1",
+      "part_def": "AeroCustom:NTC_10k",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "NTC_10kOhm_B3950",
+      "circuit_group": "TEMP_SENSING",
+      "note": "Termistor NTC 10kΩ. Conectado EXCLUSIVAMENTE a GPIO34/ADC1_CH6 del ESP32."
+    },
+    {
+      "ref": "DS1",
+      "part_def": "AeroCustom:DS18B20",
+      "footprint": "Package_TO_SOT_THT:TO-92_Inline",
+      "value": "DS18B20",
+      "circuit_group": "TEMP_SENSING",
+      "note": "Sensor temperatura 1-Wire. Conectado a GPIO16 con pull-up 4.7kΩ externo."
+    },
+    {
+      "ref": "R_SPI1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "33Ohm",
+      "circuit_group": "SPI_DAMPING",
+      "note": "Resistencia amortiguadora bus SPI CS. Previene reflexiones en pistas largas."
+    },
+    {
+      "ref": "R_SPI2",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "33Ohm",
+      "circuit_group": "SPI_DAMPING",
+      "note": "Amortiguadora SCLK."
+    },
+    {
+      "ref": "R_SPI3",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "33Ohm",
+      "circuit_group": "SPI_DAMPING",
+      "note": "Amortiguadora SDI (MOSI)."
+    },
+    {
+      "ref": "R_SPI4",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "33Ohm",
+      "circuit_group": "SPI_DAMPING",
+      "note": "Amortiguadora SDO (MISO)."
+    },
+    {
+      "ref": "C1",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "value": "4.7uF_X7R_10V",
+      "circuit_group": "VREF_FILTER",
+      "note": "Desacoplo VREF (Pin11 ATM90E36A). Pista <2mm a Pin12 AGND."
+    },
+    {
+      "ref": "C2",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "100nF_C0G_50V",
+      "circuit_group": "VREF_FILTER"
+    },
+    {
+      "ref": "C3",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "100nF_C0G_50V",
+      "circuit_group": "AFE_DECOUPLING",
+      "note": "Desacoplo AVDD Pin1 ATM90E36A."
+    },
+    {
+      "ref": "C4",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "100nF_C0G_50V",
+      "circuit_group": "AFE_DECOUPLING",
+      "note": "Desacoplo DVDD Pin33 ATM90E36A."
+    },
+    {
+      "ref": "C5",
+      "part_def": "AeroCustom:C_Polymer",
+      "footprint": "Capacitor_SMD:CP_Elec_6.3x5.4",
+      "value": "100uF_PolyAl_6.3V",
+      "circuit_group": "BULK_DIGITAL",
+      "note": "Bulk polímero riel 3.3V ESP32. Absorbe picos RF WiFi ~500mA."
+    },
+    {
+      "ref": "C6",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "100nF_C0G_50V",
+      "circuit_group": "RESET_FILTER",
+      "note": "RC de reset ATM90E36A. En serie con R_RST1 10kΩ."
+    },
+    {
+      "ref": "C7",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "value": "22pF_C0G_50V",
+      "circuit_group": "CRYSTAL_LOAD",
+      "note": "Carga cristal OSCI. C0G/NP0."
+    },
+    {
+      "ref": "C8",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "value": "22pF_C0G_50V",
+      "circuit_group": "CRYSTAL_LOAD",
+      "note": "Carga cristal OSCO. C0G/NP0."
+    },
+    {
+      "ref": "C9",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "10nF_C0G_50V",
+      "circuit_group": "VT_ANTIALIASING",
+      "note": "Capacitor diferencial filtro antialiasing Tensión V1. fc=15.9kHz."
+    },
+    {
+      "ref": "C10",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "10nF_C0G_50V",
+      "circuit_group": "VT_ANTIALIASING"
+    },
+    {
+      "ref": "C11",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "10nF_C0G_50V",
+      "circuit_group": "VT_ANTIALIASING"
+    },
+    {
+      "ref": "R_RST1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "10kOhm",
+      "circuit_group": "RESET_NET",
+      "note": "Pull-up RESET ATM90E36A. Activo bajo."
+    },
+    {
+      "ref": "R_IRQ1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "10kOhm",
+      "circuit_group": "IRQ_PULLUP",
+      "note": "Pull-up IRQ0 ATM90E36A."
+    },
+    {
+      "ref": "R_IRQ2",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "10kOhm",
+      "circuit_group": "IRQ_PULLUP",
+      "note": "Pull-up IRQ1 ATM90E36A."
+    },
+    {
+      "ref": "R_PD1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "4.7kOhm",
+      "circuit_group": "RELAY_SAFETY",
+      "note": "Pull-down seguridad GPIO17→PC817. Garantiza relé OFF durante reset ESP32."
+    },
+    {
+      "ref": "R_DS1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "4.7kOhm",
+      "circuit_group": "DS18B20_PULLUP",
+      "note": "Pull-up 1-Wire DS18B20 a 3.3V."
+    },
+    {
+      "ref": "R_NTC1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "value": "10kOhm",
+      "circuit_group": "NTC_DIVIDER",
+      "note": "Resistencia serie del divisor NTC. Referencia a 3.3V."
+    },
+    {
+      "ref": "R_SNB1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "100Ohm_1W",
+      "circuit_group": "RELAY_SNUBBER",
+      "note": "Resistencia snubber RC relé. Reduce corriente de fuga a <0.72mA RMS."
+    },
+    {
+      "ref": "C_SNB1",
+      "part_def": "AeroCustom:C_X2",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "value": "10nF_275VAC_X2",
+      "circuit_group": "RELAY_SNUBBER",
+      "note": "Capacitor X2 275VAC snubber relé."
+    },
+    {
+      "ref": "FB1",
+      "part_def": "AeroCustom:Ferrite_Bead",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "600Ohm@100MHz",
+      "circuit_group": "AFE_FILTER",
+      "note": "Perla de ferrita entre 3.3V_DIG y AVDD. Aísla ruido RF del riel analógico."
+    }
+  ],
+  "connections": [
+    {"net": "VCC_3V3_DIG", "nodes": ["U4.OUT", "U2.3V3", "R_IRQ1.1", "R_IRQ2.1", "R_DS1.1", "R_NTC1.1", "C5.P"]},
+    {"net": "VCC_3V3_AFE", "nodes": ["U3.OUT", "U1.AVDD", "C3.P", "FB1.2"]},
+    {"net": "FB1_MID", "nodes": ["FB1.1", "VCC_3V3_DIG"]},
+    {"net": "GND", "nodes": ["U4.GND", "U2.GND", "C5.N", "R_PD1.2", "Q1.S", "U5.C", "C_SNB1.N"]},
+    {"net": "AGND", "nodes": ["U1.AGND1", "U1.AGND2", "C1.N", "C2.N", "C3.N", "D5.N", "D6.N", "D7.N"]},
+    {"net": "DVDD_ATM", "nodes": ["U1.DVDD", "C4.P"]},
+    {"net": "DGND_ATM", "nodes": ["U1.DGND1", "U1.DGND2", "C4.N", "C6.N", "C7.N", "C8.N"]},
+    {"net": "NET_TIE_AGND_DGND", "nodes": ["AGND", "DGND_ATM"], "note": "Star-ground Net-Tie 0.5mm bajo ATM90E36A. Conectar solo en un punto."},
+    {"net": "VCC_5V_IN", "nodes": ["J8.1", "U3.IN", "U4.IN"]},
+    {"net": "GND_PWR", "nodes": ["J8.2", "GND"]},
+    {"net": "ATM_VREF", "nodes": ["U1.VREF", "C1.P", "C2.P"]},
+    {"net": "ATM_RESET", "nodes": ["U1.RESET", "R_RST1.1", "C6.P"]},
+    {"net": "VCC_RESET_PU", "nodes": ["R_RST1.2", "VCC_3V3_DIG"]},
+    {"net": "ATM_OSCI", "nodes": ["U1.OSCI", "Y1.1", "C7.P"]},
+    {"net": "ATM_OSCO", "nodes": ["U1.OSCO", "Y1.2", "C8.P"]},
+    {"net": "SPI_CS", "nodes": ["U1.CS", "R_SPI1.1", "U2.IO5"]},
+    {"net": "SPI_SCLK", "nodes": ["U1.SCLK", "R_SPI2.1", "U2.IO18"]},
+    {"net": "SPI_SDI", "nodes": ["U1.SDI", "R_SPI3.1", "U2.IO23"]},
+    {"net": "SPI_SDO", "nodes": ["U1.SDO", "R_SPI4.1", "U2.IO19"]},
+    {"net": "SPI_CS_ATM", "nodes": ["R_SPI1.2", "U1.CS"]},
+    {"net": "SPI_CLK_ATM", "nodes": ["R_SPI2.2", "U1.SCLK"]},
+    {"net": "SPI_MOSI_ATM", "nodes": ["R_SPI3.2", "U1.SDI"]},
+    {"net": "SPI_MISO_ATM", "nodes": ["R_SPI4.2", "U1.SDO"]},
+    {"net": "ATM_IRQ0", "nodes": ["U1.IRQ0", "R_IRQ1.2", "U2.IO35"]},
+    {"net": "ATM_IRQ1", "nodes": ["U1.IRQ1", "R_IRQ2.2", "U2.IO34"]},
+    {"net": "ATM_PM0_GND", "nodes": ["U1.PM0", "DGND_ATM"]},
+    {"net": "ATM_PM1_GND", "nodes": ["U1.PM1", "DGND_ATM"]},
+    {"net": "AVDD_ATM", "nodes": ["U1.AVDD", "C3.P"]},
+    {"net": "I1P", "nodes": ["U1.I1P", "RB1.2"]},
+    {"net": "I1N", "nodes": ["U1.I1N", "RB1.1", "J1.2"]},
+    {"net": "CT1_IN_P", "nodes": ["J1.1", "D1.A", "RB1.2"]},
+    {"net": "CT1_IN_N", "nodes": ["J1.2", "D1.K", "RB1.1"]},
+    {"net": "I2P", "nodes": ["U1.I2P", "RB2.2"]},
+    {"net": "I2N", "nodes": ["U1.I2N", "RB2.1"]},
+    {"net": "CT2_IN_P", "nodes": ["J2.1", "D2.A", "RB2.2"]},
+    {"net": "CT2_IN_N", "nodes": ["J2.2", "D2.K", "RB2.1"]},
+    {"net": "I3P", "nodes": ["U1.I3P", "RB3.2"]},
+    {"net": "I3N", "nodes": ["U1.I3N", "RB3.1"]},
+    {"net": "CT3_IN_P", "nodes": ["J3.1", "D3.A", "RB3.2"]},
+    {"net": "CT3_IN_N", "nodes": ["J3.2", "D3.K", "RB3.1"]},
+    {"net": "INP", "nodes": ["U1.I4P", "RB4.2"]},
+    {"net": "INN", "nodes": ["U1.I4N", "RB4.1"]},
+    {"net": "CT4_IN_P", "nodes": ["J4.1", "D4.A", "RB4.2"]},
+    {"net": "CT4_IN_N", "nodes": ["J4.2", "D4.K", "RB4.1"]},
+    {"net": "V1P_ADC", "nodes": ["U1.V1P", "RVB1.2", "C9.P", "D5.A"]},
+    {"net": "V1N_ADC", "nodes": ["U1.V1N", "AGND"]},
+    {"net": "TRAFO_V1_IN", "nodes": ["J5.1", "RV1.1"]},
+    {"net": "RV1_MIDPOINT", "nodes": ["RV1.2", "RVB1.1", "C9.N"]},
+    {"net": "V2P_ADC", "nodes": ["U1.V2P", "RVB2.2", "C10.P", "D6.A"]},
+    {"net": "V2N_ADC", "nodes": ["U1.V2N", "AGND"]},
+    {"net": "TRAFO_V2_IN", "nodes": ["J6.1", "RV2.1"]},
+    {"net": "RV2_MIDPOINT", "nodes": ["RV2.2", "RVB2.1", "C10.N"]},
+    {"net": "V3P_ADC", "nodes": ["U1.V3P", "RVB3.2", "C11.P", "D7.A"]},
+    {"net": "V3N_ADC", "nodes": ["U1.V3N", "AGND"]},
+    {"net": "TRAFO_V3_IN", "nodes": ["J7.1", "RV3.1"]},
+    {"net": "RV3_MIDPOINT", "nodes": ["RV3.2", "RVB3.1", "C11.N"]},
+    {"net": "TRAFO_REF_GND", "nodes": ["J5.2", "J6.2", "J7.2", "AGND"], "note": "Referencia de los trafos (secundario centro-neutro) conectada a AGND."},
+    {"net": "ESP32_NTC", "nodes": ["U2.IO34_ADC1CH6", "RT1.2", "R_NTC1.2"]},
+    {"net": "NTC_GND", "nodes": ["RT1.1", "GND"]},
+    {"net": "ESP32_DS18B20", "nodes": ["U2.IO16", "DS1.DQ", "R_DS1.2"]},
+    {"net": "DS18B20_GND", "nodes": ["DS1.GND", "GND"]},
+    {"net": "DS18B20_VCC", "nodes": ["DS1.VDD", "VCC_3V3_DIG"]},
+    {"net": "RELAY_CTRL_GPIO", "nodes": ["U2.IO17", "R_PD1.1", "U5.A"]},
+    {"net": "OPTO_K", "nodes": ["U5.K", "GND"]},
+    {"net": "OPTO_C", "nodes": ["U5.C", "VCC_12V_RELAY"]},
+    {"net": "RELAY_DRV_GATE", "nodes": ["U5.E", "Q1.G"]},
+    {"net": "Q1_DRAIN", "nodes": ["Q1.D", "RLY1.COIL2", "D8.A"]},
+    {"net": "VCC_12V_RELAY", "nodes": ["RLY1.COIL1", "D8.K"], "note": "Riel 12V para bobina del relé. Viene de fuente externa o DC-DC desde 5V."},
+    {"net": "RELAY_NC", "nodes": ["RLY1.NC", "J9.1"]},
+    {"net": "RELAY_COM", "nodes": ["RLY1.COM", "J9.2"]},
+    {"net": "RELAY_NO", "nodes": ["RLY1.NO", "J9.3"]},
+    {"net": "SNUBBER_MID", "nodes": ["R_SNB1.1", "RELAY_COM"]},
+    {"net": "SNUBBER_CAP", "nodes": ["R_SNB1.2", "C_SNB1.P", "RELAY_NO"]},
+    {"net": "ATM_WARNOUT", "nodes": ["U1.WARNOUT", "U2.IO32"]},
+    {"net": "ATM_CF1", "nodes": ["U1.CF1", "U2.IO25"]},
+    {"net": "ATM_CF2", "nodes": ["U1.CF2", "U2.IO26"]},
+    {"net": "ATM_CF3", "nodes": ["U1.CF3", "U2.IO27"]},
+    {"net": "ATM_CF4", "nodes": ["U1.CF4", "U2.IO33"]}
+  ],
+  "board_config": {
+    "layers": 2,
+    "thickness_mm": 1.6,
+    "material": "FR4",
+    "copper_weight_oz": 1,
+    "surface_finish": "HASL",
+    "min_trace_width_mm": 0.2,
+    "min_clearance_mm": 0.2,
+    "edge_cuts_clearance_mm": 0.3,
+    "isolation_slots": [
+      {"description": "Slot fresado entre zona HV trafo y zona digital. No aplica en PCB-A (HV es externo)."}
+    ],
+    "ground_planes": [
+      {"layer": "B.Cu", "net": "GND"},
+      {"layer": "F.Cu", "net": "AGND", "region": "analog_section"}
+    ]
+  }
+}

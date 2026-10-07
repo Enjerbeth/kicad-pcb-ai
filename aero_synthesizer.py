@@ -126,12 +126,19 @@ class AeroSynthesizer:
         with open(config_path, 'w', encoding='utf-8') as f:
             json.dump(layout_config, f, indent=4)
 
-        kicad_python = os.environ.get('KICAD_PYTHON_EXE', r"C:\Program Files\KiCad\8.0\bin\python.exe")
+        candidate_paths = [
+            os.environ.get('KICAD_PYTHON_EXE'),
+            r"E:\Program Files (x86)\bin\python.exe",
+            r"C:\Program Files\KiCad\8.0\bin\python.exe",
+            r"C:\Program Files\KiCad\9.0\bin\python.exe",
+            r"C:\Program Files\KiCad\bin\python.exe"
+        ]
+        kicad_python = next((p for p in candidate_paths if p and os.path.exists(p)), None)
+
+        if not kicad_python:
+            raise RuntimeError("[-] Intérprete de KiCad no encontrado en rutas conocidas. Configura la variable KICAD_PYTHON_EXE.")
+
         macro_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "aero_pcb_macro.py")
-
-        if not os.path.exists(kicad_python):
-            raise RuntimeError(f"[-] Intérprete de KiCad no encontrado en: {kicad_python}. Configura la variable KICAD_PYTHON_EXE.")
-
         print(f"[+] Ejecutando macro topológica de pcbnew (aero_pcb_macro.py)...")
         cmd_macro = [kicad_python, macro_script, config_path]
 
@@ -145,6 +152,19 @@ class AeroSynthesizer:
         except subprocess.CalledProcessError as e:
             print(f"[-] Error crítico en la ejecución de la macro topológica:\n{e.stderr}")
             raise
+
+        freerouting_jar = os.environ.get('FREEROUTING_JAR', r"C:\freerouting\freerouting.jar")
+        java_found = False
+        try:
+            java_check = subprocess.run(["java", "-version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=5)
+            java_found = (java_check.returncode == 0)
+        except Exception:
+            java_found = False
+
+        if not os.path.exists(freerouting_jar) or not java_found:
+            print("[+] Placa base física 'aero_board.kicad_pcb' generada exitosamente.")
+            print("[i] Freerouting/Java no detectados. La placa queda lista para ruteo interactivo en KiCad o instalación de freerouting.jar.")
+            return pcb_file
 
         print("[*] Iniciando Fase 4: Exportación DSN, Freerouting e Importación SES...")
 
@@ -162,10 +182,6 @@ class AeroSynthesizer:
         except subprocess.CalledProcessError as e:
             print(f"[-] Falla en exportación DSN:\n{e.stderr.decode()}")
             raise
-
-        freerouting_jar = os.environ.get('FREEROUTING_JAR', r"C:\freerouting\freerouting.jar")
-        if not os.path.exists(freerouting_jar):
-            raise RuntimeError(f"[-] Binario de Freerouting no encontrado en: {freerouting_jar}. Configura FREEROUTING_JAR.")
 
         print("  -> Lanzando motor Java de Freerouting...")
         cmd_freerouting = [

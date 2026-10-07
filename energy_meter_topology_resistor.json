@@ -1,0 +1,556 @@
+{
+  "project_metadata": {
+    "name": "aero_energy_meter_3p4w_RESISTOR",
+    "variant": "PCB-B — Divisor Resistivo Directo (Clase 0.5S / Industrial)",
+    "metrological_class": "IEC 62053-22 Clase 0.5S para Vrms, Irms, P, Q, FP, THD",
+    "engineering_note": "Divisor resistivo de precisión: error de fase ~0° en fundamental Y armónicos. Sin deriva magnética. Sin saturación. Máxima precisión metrológica con ATM90E36A. PCB energizada a HV AC — SOLO técnicos calificados. Protocolo HotGround del KI_ATM90_ENERGY_SAFETY.md obligatorio.",
+    "units": "mm",
+    "board_outline": {
+      "width": 130.0,
+      "height": 100.0,
+      "note": "Ligeramente mayor que PCB-A para acomodar las cadenas de divisores HV con clearance IEC 61010-1 CAT III"
+    },
+    "layer_count": 2,
+    "copper_pours": ["GND", "AGND"],
+    "design_rules": {
+      "default_track_width": 0.25,
+      "power_track_width": 0.6,
+      "min_clearance": 0.2,
+      "hv_clearance_mm": 6.0,
+      "hv_creepage_mm": 6.3,
+      "hv_isolation_slot_width_mm": 1.5,
+      "note": "CRÍTICO: Las pistas del divisor resistivo 230V DEBEN mantener clearance ≥6mm y creepage ≥6.3mm respecto a cualquier traza de 3.3V/GND digital. Ranuras de fresado obligatorias en Edge.Cuts.",
+      "via_diameter": 0.8,
+      "via_drill": 0.4,
+      "differential_pairs": [
+        {"net_p": "I1P", "net_n": "I1N"},
+        {"net_p": "I2P", "net_n": "I2N"},
+        {"net_p": "I3P", "net_n": "I3N"},
+        {"net_p": "INP", "net_n": "INN"}
+      ]
+    },
+    "footprint_policy": "prefer_smd"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "part_def": "AeroCustom:ATM90E36A",
+      "footprint": "Package_QFP:TQFP-48_7x7mm_P0.5mm",
+      "value": "ATM90E36A-AU",
+      "circuit_group": "AFE_METROLOGY"
+    },
+    {
+      "ref": "U2",
+      "part_def": "AeroCustom:ESP32-WROOM-32",
+      "footprint": "RF_Module:ESP32-WROOM-32",
+      "value": "ESP32-WROOM-32E",
+      "circuit_group": "MCU_DIGITAL",
+      "note": "GND del ESP32 se une directamente a AGND/DGND (HOT-GROUND). Protocolo de seguridad KI_ATM90_ENERGY_SAFETY.md obligatorio."
+    },
+    {
+      "ref": "U3",
+      "part_def": "AeroCustom:AP2112K-3.3",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "value": "AP2112K-3.3TRG1",
+      "circuit_group": "POWER_AFE",
+      "note": "LDO ultra-bajo ruido dedicado AFE. PSRR>65dB. Alimentado desde módulo de alimentación aislado integrado."
+    },
+    {
+      "ref": "U4",
+      "part_def": "AeroCustom:HLK-PM01",
+      "footprint": "Converter_ACDC:HiLink_HLK-PM01",
+      "value": "HLK-PM01_5V",
+      "circuit_group": "POWER_ISOLATED",
+      "note": "IMPORTANTE: Módulo AC-DC aislado HLK-PM01 (220V→5V 0.6W). Alimenta directamente desde la línea de fase + neutro de la red. Reemplaza el conector de 5V externo de la PCB-A. Aislamiento 4kV. Sin conexión galvánica con tierra física del PC."
+    },
+    {
+      "ref": "U5",
+      "part_def": "AeroCustom:PC817",
+      "footprint": "Package_DIP:DIP-4_W7.62mm",
+      "value": "PC817",
+      "circuit_group": "RELAY_ISOLATION"
+    },
+    {
+      "ref": "J1",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT1_PhaseA_Input",
+      "circuit_group": "CT_INPUTS",
+      "note": "CT SCT-013-000 Fase A. Bornera industrial tornillo. NO jack 3.5mm."
+    },
+    {
+      "ref": "J2",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT2_PhaseB_Input",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J3",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT3_PhaseC_Input",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J4",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT4_Neutral_Input",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J5",
+      "part_def": "AeroCustom:Screw_Terminal_01x04",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-4_P7.62mm",
+      "value": "AC_INPUT_3P4W",
+      "circuit_group": "AC_HV_INPUT",
+      "note": "PELIGRO HV: Bornera tornillo paso 7.62mm para conexión directa red trifásica (Fase A, Fase B, Fase C, Neutro). IEC 61010-1 CAT III. Clearance ≥6mm en PCB. Fresar ranura de 1.5mm entre esta bornera y el plano digital."
+    },
+    {
+      "ref": "J6",
+      "part_def": "AeroCustom:Screw_Terminal_01x04",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-4_P5.08mm",
+      "value": "RELAY_LOAD_OUT",
+      "circuit_group": "RELAY_OUTPUT"
+    },
+    {
+      "ref": "RVT1A",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "49.9kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RTOP_FA",
+      "note": "Rtop1 Fase A: 49.9kΩ serie en par (total 99.8kΩ). 0.1% 0805. Soporta 230V AC dividido entre 2 resistencias: <115Vrms cada una. Clearance ≥6mm de GND digital."
+    },
+    {
+      "ref": "RVT1B",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "49.9kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RTOP_FA",
+      "note": "Rtop2 Fase A en serie con RVT1A. Total Rtop = 99.8kΩ. Distribución de tensión 115V por resistencia para mayor seguridad dieléctrica."
+    },
+    {
+      "ref": "RVB1",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "3.3kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RBOT_FA",
+      "note": "Rbottom Fase A. Factor α=0.0319. V_ADC a 230Vrms nom = 458mVpk. Dentro del rango ±720mVpk del ATM90E36A."
+    },
+    {
+      "ref": "RVT2A",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "49.9kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RTOP_FB"
+    },
+    {
+      "ref": "RVT2B",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "49.9kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RTOP_FB"
+    },
+    {
+      "ref": "RVB2",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "3.3kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RBOT_FB"
+    },
+    {
+      "ref": "RVT3A",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "49.9kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RTOP_FC"
+    },
+    {
+      "ref": "RVT3B",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "49.9kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RTOP_FC"
+    },
+    {
+      "ref": "RVB3",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "3.3kOhm_0.1pct_0805",
+      "circuit_group": "HV_DIVIDER_RBOT_FC"
+    },
+    {
+      "ref": "RVF1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "1kOhm",
+      "circuit_group": "VT_ANTIALIASING",
+      "note": "Resistencia filtro antialiasing tensión V1. En serie antes de V1P. fc=15.9kHz con C de 10nF."
+    },
+    {
+      "ref": "RVF2",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "1kOhm",
+      "circuit_group": "VT_ANTIALIASING"
+    },
+    {
+      "ref": "RVF3",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "1kOhm",
+      "circuit_group": "VT_ANTIALIASING"
+    },
+    {
+      "ref": "RB1",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN"
+    },
+    {
+      "ref": "RB2",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN"
+    },
+    {
+      "ref": "RB3",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN"
+    },
+    {
+      "ref": "RB4",
+      "part_def": "AeroCustom:R_Precision",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0Ohm_0.1pct",
+      "circuit_group": "CT_BURDEN"
+    },
+    {
+      "ref": "D1",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D2",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D3",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D4",
+      "part_def": "AeroCustom:SMAJ6.0CA",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SMAJ6.0CA",
+      "circuit_group": "CT_PROTECTION"
+    },
+    {
+      "ref": "D5",
+      "part_def": "AeroCustom:BAV99",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "BAV99",
+      "circuit_group": "VT_CLAMPING",
+      "note": "Clamping post-divisor V1P. Limita a AVDD (3.3V analógico) y AGND."
+    },
+    {
+      "ref": "D6",
+      "part_def": "AeroCustom:BAV99",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "BAV99",
+      "circuit_group": "VT_CLAMPING"
+    },
+    {
+      "ref": "D7",
+      "part_def": "AeroCustom:BAV99",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "BAV99",
+      "circuit_group": "VT_CLAMPING"
+    },
+    {
+      "ref": "DTVS1",
+      "part_def": "AeroCustom:SMBJ275CA",
+      "footprint": "Diode_SMD:D_SMB",
+      "value": "SMBJ275CA",
+      "circuit_group": "HV_PROTECTION",
+      "note": "TVS bidireccional 275VAC en la entrada HV de cada fase antes del divisor. Protección contra transitorios de red (IEC 61000-4-5 Nivel 4)."
+    },
+    {
+      "ref": "DTVS2",
+      "part_def": "AeroCustom:SMBJ275CA",
+      "footprint": "Diode_SMD:D_SMB",
+      "value": "SMBJ275CA",
+      "circuit_group": "HV_PROTECTION"
+    },
+    {
+      "ref": "DTVS3",
+      "part_def": "AeroCustom:SMBJ275CA",
+      "footprint": "Diode_SMD:D_SMB",
+      "value": "SMBJ275CA",
+      "circuit_group": "HV_PROTECTION"
+    },
+    {
+      "ref": "F1",
+      "part_def": "AeroCustom:Fuse_SMD",
+      "footprint": "Fuse:Fuse_1812_4532Metric",
+      "value": "Fuse_630mA_250VAC_fast",
+      "circuit_group": "HV_PROTECTION",
+      "note": "Fusible rápido 630mA 250VAC en serie con cada Fase antes del divisor resistivo. Protección ante cortocircuito en divisor."
+    },
+    {
+      "ref": "F2",
+      "part_def": "AeroCustom:Fuse_SMD",
+      "footprint": "Fuse:Fuse_1812_4532Metric",
+      "value": "Fuse_630mA_250VAC_fast",
+      "circuit_group": "HV_PROTECTION"
+    },
+    {
+      "ref": "F3",
+      "part_def": "AeroCustom:Fuse_SMD",
+      "footprint": "Fuse:Fuse_1812_4532Metric",
+      "value": "Fuse_630mA_250VAC_fast",
+      "circuit_group": "HV_PROTECTION"
+    },
+    {
+      "ref": "D8",
+      "part_def": "AeroCustom:SS14",
+      "footprint": "Diode_SMD:D_SMA",
+      "value": "SS14",
+      "circuit_group": "RELAY_FLYBACK"
+    },
+    {
+      "ref": "Q1",
+      "part_def": "AeroCustom:AO3400",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "value": "AO3400",
+      "circuit_group": "RELAY_DRIVER"
+    },
+    {
+      "ref": "RLY1",
+      "part_def": "AeroCustom:Relay_12V",
+      "footprint": "Relay_THT:Relay_SPDT_Omron-G5Q-1",
+      "value": "G5Q-1-DC12",
+      "circuit_group": "RELAY_LOAD"
+    },
+    {
+      "ref": "Y1",
+      "part_def": "AeroCustom:Crystal_16.384MHz",
+      "footprint": "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm",
+      "value": "16.384MHz",
+      "circuit_group": "AFE_CLOCK"
+    },
+    {
+      "ref": "RT1",
+      "part_def": "AeroCustom:NTC_10k",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "value": "NTC_10kOhm_B3950",
+      "circuit_group": "TEMP_SENSING"
+    },
+    {
+      "ref": "DS1",
+      "part_def": "AeroCustom:DS18B20",
+      "footprint": "Package_TO_SOT_THT:TO-92_Inline",
+      "value": "DS18B20",
+      "circuit_group": "TEMP_SENSING"
+    },
+    {
+      "ref": "R_SPI1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "33Ohm", "circuit_group": "SPI_DAMPING"},
+    {"ref": "R_SPI2", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "33Ohm", "circuit_group": "SPI_DAMPING"},
+    {"ref": "R_SPI3", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "33Ohm", "circuit_group": "SPI_DAMPING"},
+    {"ref": "R_SPI4", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "33Ohm", "circuit_group": "SPI_DAMPING"},
+    {"ref": "C1", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0805_2012Metric", "value": "4.7uF_X7R_10V", "circuit_group": "VREF_FILTER"},
+    {"ref": "C2", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "100nF_C0G_50V", "circuit_group": "VREF_FILTER"},
+    {"ref": "C3", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "100nF_C0G_50V", "circuit_group": "AFE_DECOUPLING"},
+    {"ref": "C4", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "100nF_C0G_50V", "circuit_group": "AFE_DECOUPLING"},
+    {"ref": "C5", "part_def": "AeroCustom:C_Polymer", "footprint": "Capacitor_SMD:CP_Elec_6.3x5.4", "value": "100uF_PolyAl_6.3V", "circuit_group": "BULK_DIGITAL"},
+    {"ref": "C6", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "100nF_C0G_50V", "circuit_group": "RESET_FILTER"},
+    {"ref": "C7", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0805_2012Metric", "value": "22pF_C0G_50V", "circuit_group": "CRYSTAL_LOAD"},
+    {"ref": "C8", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0805_2012Metric", "value": "22pF_C0G_50V", "circuit_group": "CRYSTAL_LOAD"},
+    {
+      "ref": "C9",
+      "part_def": "AeroCustom:C_MLCC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "value": "10nF_C0G_50V",
+      "circuit_group": "VT_ANTIALIASING",
+      "note": "Condensador diferencial filtro antialiasing post-divisor V1. fc=15.9kHz."
+    },
+    {"ref": "C10", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "10nF_C0G_50V", "circuit_group": "VT_ANTIALIASING"},
+    {"ref": "C11", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "10nF_C0G_50V", "circuit_group": "VT_ANTIALIASING"},
+    {"ref": "C_CM1", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "1nF_C0G_50V", "circuit_group": "VT_CM_FILTER", "note": "Modo común V1P a AGND."},
+    {"ref": "C_CM2", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "1nF_C0G_50V", "circuit_group": "VT_CM_FILTER"},
+    {"ref": "C_CM3", "part_def": "AeroCustom:C_MLCC", "footprint": "Capacitor_SMD:C_0402_1005Metric", "value": "1nF_C0G_50V", "circuit_group": "VT_CM_FILTER"},
+    {"ref": "R_RST1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "10kOhm", "circuit_group": "RESET_NET"},
+    {"ref": "R_IRQ1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "10kOhm", "circuit_group": "IRQ_PULLUP"},
+    {"ref": "R_IRQ2", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "10kOhm", "circuit_group": "IRQ_PULLUP"},
+    {"ref": "R_PD1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "4.7kOhm", "circuit_group": "RELAY_SAFETY"},
+    {"ref": "R_DS1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "4.7kOhm", "circuit_group": "DS18B20_PULLUP"},
+    {"ref": "R_NTC1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0402_1005Metric", "value": "10kOhm", "circuit_group": "NTC_DIVIDER"},
+    {"ref": "R_SNB1", "part_def": "AeroCustom:R", "footprint": "Resistor_SMD:R_0805_2012Metric", "value": "100Ohm_1W", "circuit_group": "RELAY_SNUBBER"},
+    {"ref": "C_SNB1", "part_def": "AeroCustom:C_X2", "footprint": "Capacitor_SMD:C_0805_2012Metric", "value": "10nF_275VAC_X2", "circuit_group": "RELAY_SNUBBER"},
+    {"ref": "FB1", "part_def": "AeroCustom:Ferrite_Bead", "footprint": "Resistor_SMD:R_0805_2012Metric", "value": "600Ohm@100MHz", "circuit_group": "AFE_FILTER"},
+    {
+      "ref": "MOV1",
+      "part_def": "AeroCustom:MOV_275VAC",
+      "footprint": "Varistor_THT:RV_Disc_D10mm_W2.5mm_P5mm",
+      "value": "S10K275",
+      "circuit_group": "HV_SURGE",
+      "note": "Varistor MOV 275VAC entre Fase A y Neutro. Supresión de transitorios de línea (sobretensiones rápidas de red). En paralelo con la entrada HV."
+    },
+    {
+      "ref": "MOV2",
+      "part_def": "AeroCustom:MOV_275VAC",
+      "footprint": "Varistor_THT:RV_Disc_D10mm_W2.5mm_P5mm",
+      "value": "S10K275",
+      "circuit_group": "HV_SURGE"
+    },
+    {
+      "ref": "MOV3",
+      "part_def": "AeroCustom:MOV_275VAC",
+      "footprint": "Varistor_THT:RV_Disc_D10mm_W2.5mm_P5mm",
+      "value": "S10K275",
+      "circuit_group": "HV_SURGE"
+    }
+  ],
+  "connections": [
+    {"net": "VCC_3V3_DIG", "nodes": ["U4.VO5", "U2.3V3", "R_IRQ1.1", "R_IRQ2.1", "R_DS1.1", "R_NTC1.1", "C5.P"]},
+    {"net": "VCC_3V3_AFE", "nodes": ["U3.OUT", "U1.AVDD", "C3.P", "FB1.2", "D5.K", "D6.K", "D7.K"]},
+    {"net": "FB1_MID", "nodes": ["FB1.1", "VCC_3V3_DIG"]},
+    {"net": "GND", "nodes": ["U4.GND", "U2.GND", "C5.N", "R_PD1.2", "Q1.S", "U5.C", "C_SNB1.N"]},
+    {"net": "AGND", "nodes": ["U1.AGND1", "U1.AGND2", "C1.N", "C2.N", "C3.N", "C_CM1.N", "C_CM2.N", "C_CM3.N"]},
+    {"net": "DVDD_ATM", "nodes": ["U1.DVDD", "C4.P"]},
+    {"net": "DGND_ATM", "nodes": ["U1.DGND1", "U1.DGND2", "C4.N", "C6.N", "C7.N", "C8.N"]},
+    {"net": "NET_TIE_AGND_DGND", "nodes": ["AGND", "DGND_ATM", "GND"], "note": "HOT-GROUND: En PCB-B, AGND/DGND/GND ESP32 están unidos al NEUTRO de la red trifásica. Star-point bajo ATM90E36A."},
+    {
+      "net": "AC_NEUTRO",
+      "nodes": ["J5.4", "U4.LN", "MOV1.N", "MOV2.N", "MOV3.N", "GND"],
+      "note": "Neutro de red. Referencia HV de la PCB. POTENCIAL DE RED AC."
+    },
+    {
+      "net": "AC_FASE_A",
+      "nodes": ["J5.1", "F1.1", "DTVS1.A", "MOV1.P"],
+      "note": "PELIGRO: 230V AC / Fase A. Clearance ≥6mm en todas las capas de la PCB."
+    },
+    {"net": "AC_FASE_B", "nodes": ["J5.2", "F2.1", "DTVS2.A", "MOV2.P"]},
+    {"net": "AC_FASE_C", "nodes": ["J5.3", "F3.1", "DTVS3.A", "MOV3.P"]},
+    {"net": "FUSED_FA", "nodes": ["F1.2", "DTVS1.K", "RVT1A.1"]},
+    {"net": "FUSED_FB", "nodes": ["F2.2", "DTVS2.K", "RVT2A.1"]},
+    {"net": "FUSED_FC", "nodes": ["F3.2", "DTVS3.K", "RVT3A.1"]},
+    {"net": "RTOP_FA_MID", "nodes": ["RVT1A.2", "RVT1B.1"]},
+    {"net": "V1_DIV_MID", "nodes": ["RVT1B.2", "RVB1.1", "C9.P", "RVF1.1"]},
+    {"net": "RTOP_FB_MID", "nodes": ["RVT2A.2", "RVT2B.1"]},
+    {"net": "V2_DIV_MID", "nodes": ["RVT2B.2", "RVB2.1", "C10.P", "RVF2.1"]},
+    {"net": "RTOP_FC_MID", "nodes": ["RVT3A.2", "RVT3B.1"]},
+    {"net": "V3_DIV_MID", "nodes": ["RVT3B.2", "RVB3.1", "C11.P", "RVF3.1"]},
+    {"net": "RVB1_GND", "nodes": ["RVB1.2", "AGND"]},
+    {"net": "RVB2_GND", "nodes": ["RVB2.2", "AGND"]},
+    {"net": "RVB3_GND", "nodes": ["RVB3.2", "AGND"]},
+    {"net": "V1P", "nodes": ["U1.V1P", "RVF1.2", "C_CM1.P", "D5.A"]},
+    {"net": "V1N", "nodes": ["U1.V1N", "AGND"]},
+    {"net": "V2P", "nodes": ["U1.V2P", "RVF2.2", "C_CM2.P", "D6.A"]},
+    {"net": "V2N", "nodes": ["U1.V2N", "AGND"]},
+    {"net": "V3P", "nodes": ["U1.V3P", "RVF3.2", "C_CM3.P", "D7.A"]},
+    {"net": "V3N", "nodes": ["U1.V3N", "AGND"]},
+    {"net": "HLK_LINE", "nodes": ["J5.1", "U4.LN_IN"], "note": "El HLK-PM01 se alimenta de Fase A y Neutro. Provee 5V aislado al riel digital."},
+    {"net": "HLK_5V_OUT", "nodes": ["U4.VO5", "VCC_3V3_DIG"]},
+    {"net": "ATM_VREF", "nodes": ["U1.VREF", "C1.P", "C2.P"]},
+    {"net": "ATM_RESET", "nodes": ["U1.RESET", "R_RST1.1", "C6.P"]},
+    {"net": "VCC_RESET_PU", "nodes": ["R_RST1.2", "VCC_3V3_DIG"]},
+    {"net": "ATM_OSCI", "nodes": ["U1.OSCI", "Y1.1", "C7.P"]},
+    {"net": "ATM_OSCO", "nodes": ["U1.OSCO", "Y1.2", "C8.P"]},
+    {"net": "SPI_CS", "nodes": ["U1.CS", "R_SPI1.1", "U2.IO5"]},
+    {"net": "SPI_SCLK", "nodes": ["U1.SCLK", "R_SPI2.1", "U2.IO18"]},
+    {"net": "SPI_SDI", "nodes": ["U1.SDI", "R_SPI3.1", "U2.IO23"]},
+    {"net": "SPI_SDO", "nodes": ["U1.SDO", "R_SPI4.1", "U2.IO19"]},
+    {"net": "SPI_CS_ATM", "nodes": ["R_SPI1.2", "U1.CS"]},
+    {"net": "SPI_CLK_ATM", "nodes": ["R_SPI2.2", "U1.SCLK"]},
+    {"net": "SPI_MOSI_ATM", "nodes": ["R_SPI3.2", "U1.SDI"]},
+    {"net": "SPI_MISO_ATM", "nodes": ["R_SPI4.2", "U1.SDO"]},
+    {"net": "ATM_IRQ0", "nodes": ["U1.IRQ0", "R_IRQ1.2", "U2.IO35"]},
+    {"net": "ATM_IRQ1", "nodes": ["U1.IRQ1", "R_IRQ2.2", "U2.IO34"]},
+    {"net": "ATM_PM0_GND", "nodes": ["U1.PM0", "DGND_ATM"]},
+    {"net": "ATM_PM1_GND", "nodes": ["U1.PM1", "DGND_ATM"]},
+    {"net": "I1P", "nodes": ["U1.I1P", "RB1.2"]},
+    {"net": "I1N", "nodes": ["U1.I1N", "RB1.1"]},
+    {"net": "CT1_IN_P", "nodes": ["J1.1", "D1.A", "RB1.2"]},
+    {"net": "CT1_IN_N", "nodes": ["J1.2", "D1.K", "RB1.1"]},
+    {"net": "I2P", "nodes": ["U1.I2P", "RB2.2"]},
+    {"net": "I2N", "nodes": ["U1.I2N", "RB2.1"]},
+    {"net": "CT2_IN_P", "nodes": ["J2.1", "D2.A", "RB2.2"]},
+    {"net": "CT2_IN_N", "nodes": ["J2.2", "D2.K", "RB2.1"]},
+    {"net": "I3P", "nodes": ["U1.I3P", "RB3.2"]},
+    {"net": "I3N", "nodes": ["U1.I3N", "RB3.1"]},
+    {"net": "CT3_IN_P", "nodes": ["J3.1", "D3.A", "RB3.2"]},
+    {"net": "CT3_IN_N", "nodes": ["J3.2", "D3.K", "RB3.1"]},
+    {"net": "INP", "nodes": ["U1.I4P", "RB4.2"]},
+    {"net": "INN", "nodes": ["U1.I4N", "RB4.1"]},
+    {"net": "CT4_IN_P", "nodes": ["J4.1", "D4.A", "RB4.2"]},
+    {"net": "CT4_IN_N", "nodes": ["J4.2", "D4.K", "RB4.1"]},
+    {"net": "ESP32_NTC", "nodes": ["U2.IO34_ADC1CH6", "RT1.2", "R_NTC1.2"]},
+    {"net": "NTC_GND", "nodes": ["RT1.1", "GND"]},
+    {"net": "ESP32_DS18B20", "nodes": ["U2.IO16", "DS1.DQ", "R_DS1.2"]},
+    {"net": "DS18B20_GND", "nodes": ["DS1.GND", "GND"]},
+    {"net": "DS18B20_VCC", "nodes": ["DS1.VDD", "VCC_3V3_DIG"]},
+    {"net": "RELAY_CTRL_GPIO", "nodes": ["U2.IO17", "R_PD1.1", "U5.A"]},
+    {"net": "OPTO_K", "nodes": ["U5.K", "GND"]},
+    {"net": "OPTO_C", "nodes": ["U5.C", "VCC_12V_RELAY"]},
+    {"net": "RELAY_DRV_GATE", "nodes": ["U5.E", "Q1.G"]},
+    {"net": "Q1_DRAIN", "nodes": ["Q1.D", "RLY1.COIL2", "D8.A"]},
+    {"net": "VCC_12V_RELAY", "nodes": ["RLY1.COIL1", "D8.K"]},
+    {"net": "RELAY_NC", "nodes": ["RLY1.NC", "J6.1"]},
+    {"net": "RELAY_COM", "nodes": ["RLY1.COM", "J6.2"]},
+    {"net": "RELAY_NO", "nodes": ["RLY1.NO", "J6.3"]},
+    {"net": "SNUBBER_MID", "nodes": ["R_SNB1.1", "RELAY_COM"]},
+    {"net": "SNUBBER_CAP", "nodes": ["R_SNB1.2", "C_SNB1.P", "RELAY_NO"]},
+    {"net": "ATM_WARNOUT", "nodes": ["U1.WARNOUT", "U2.IO32"]},
+    {"net": "ATM_CF1", "nodes": ["U1.CF1", "U2.IO25"]},
+    {"net": "ATM_CF2", "nodes": ["U1.CF2", "U2.IO26"]},
+    {"net": "ATM_CF3", "nodes": ["U1.CF3", "U2.IO27"]},
+    {"net": "ATM_CF4", "nodes": ["U1.CF4", "U2.IO33"]}
+  ],
+  "board_config": {
+    "layers": 2,
+    "thickness_mm": 1.6,
+    "material": "FR4",
+    "copper_weight_oz": 1,
+    "surface_finish": "HASL_LEAD_FREE",
+    "min_trace_width_mm": 0.2,
+    "min_clearance_mm": 0.2,
+    "hv_clearance_mm": 6.0,
+    "hv_creepage_mm": 6.3,
+    "edge_cuts_clearance_mm": 0.3,
+    "isolation_slots": [
+      {
+        "description": "Ranura de fresado de 1.5mm entre la zona HV (divisores, fusibles, MOV, bornera J5) y la zona LV (ATM90E36A, ESP32, LDOs). Obligatorio IEC 61010-1 CAT III.",
+        "width_mm": 1.5,
+        "layer": "Edge.Cuts"
+      }
+    ],
+    "ground_planes": [
+      {"layer": "B.Cu", "net": "GND"},
+      {"layer": "F.Cu", "net": "AGND", "region": "analog_section"}
+    ],
+    "fiducials": {
+      "count": 3,
+      "description": "3 marcas fiduciarias en esquinas opuestas para alineación Pick & Place en JLCPCB/PCBWay"
+    },
+    "pcba_notes": {
+      "smd_side": "TOP",
+      "tht_components": ["F1", "F2", "F3", "MOV1", "MOV2", "MOV3", "RLY1", "DS1", "J1", "J2", "J3", "J4", "J5", "J6"],
+      "jlcpcb_strategy": "Economic PCBA para todos los SMD en TOP. Soldadura manual del usuario para los 14 componentes THT (fusibles, MOVs, relé, borneras).",
+      "rotation_check": "Verificar rotación ESP32 y ATM90E36A en visor web JLCPCB antes de confirmar producción. Usar plugin kicad-jlcpcb-tools."
+    }
+  }
+}

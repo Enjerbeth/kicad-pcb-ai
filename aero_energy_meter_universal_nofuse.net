@@ -1,0 +1,1765 @@
+(export 
+  (version "D")
+  (design
+    (source "aero_orchestrator.py")
+    (date "10/07/2026 07:53 AM")
+    (tool "SKiDL (2.2.0)")
+    (sheet
+      (number 1)
+      (name "/")
+      (tstamps "/")
+      (title_block
+        (title)
+        (company)
+        (rev)
+        (date)
+        (source "aero_orchestrator.py")
+        (comment
+          (number "1")
+          (value ""))
+        (comment
+          (number "2")
+          (value ""))
+        (comment
+          (number "3")
+          (value ""))
+        (comment
+          (number "4")
+          (value ""))
+        (comment
+          (number "5")
+          (value ""))
+        (comment
+          (number "6")
+          (value ""))
+        (comment
+          (number "7")
+          (value ""))
+        (comment
+          (number "8")
+          (value ""))
+        (comment
+          (number "9")
+          (value "")))))
+  (components
+    (comp
+      (ref "C1")
+      (value "4.7uF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "FvaC36rmKA")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "a82a4816-30d7-51eb-b231-255550458293"))
+    (comp
+      (ref "C2")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "DdZBUte64f")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "de86dfc1-a6c1-5dff-adb3-f63016e15688"))
+    (comp
+      (ref "C3")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "MXCWjAGjX9")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "5f26004d-0544-54c0-af3d-1c6b498042a0"))
+    (comp
+      (ref "C4")
+      (value "100nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "h3eKhQMj_a")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "25645e4c-3653-57c2-8629-2a1faf5bca72"))
+    (comp
+      (ref "C5")
+      (value "100uF")
+      (description "")
+      (footprint "Capacitor_SMD:CP_Elec_6.3x5.4")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:CP_Elec_6.3x5.4")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "J8tv61hvXA")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "e4069663-3bd0-504a-8dcd-7dc507900a24"))
+    (comp
+      (ref "C_VF1")
+      (value "10nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "iDd1R1dBF5")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "757a521d-4030-5a4f-9aab-94116b06bf34"))
+    (comp
+      (ref "C_VF2")
+      (value "10nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "DvQxYTN2_m")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "471cc9a0-9d20-5e9b-8b9d-11c8cf74da37"))
+    (comp
+      (ref "C_VF3")
+      (value "10nF")
+      (description "")
+      (footprint "Capacitor_SMD:C_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "miRhNHegzg")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "C"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "4c6a257a-581f-5a04-9031-38453b1b512a"))
+    (comp
+      (ref "J1")
+      (value "CT1_PhaseA")
+      (description "")
+      (footprint "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "rfojN6mQNr")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Screw_Terminal_01x02"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "dad4468c-d582-5580-8771-f92e47810d7e"))
+    (comp
+      (ref "J2")
+      (value "CT2_PhaseB")
+      (description "")
+      (footprint "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "BULkp0RzmU")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Screw_Terminal_01x02"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "47d7319c-83e7-588c-90b6-0f4a8a980232"))
+    (comp
+      (ref "J3")
+      (value "CT3_PhaseC")
+      (description "")
+      (footprint "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "xt5aimUrOJ")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Screw_Terminal_01x02"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "37e04e0d-3d10-5780-8194-fff1a608a6e1"))
+    (comp
+      (ref "J4")
+      (value "CT4_Neutral")
+      (description "")
+      (footprint "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "TerminalBlock:TerminalBlock_bornier-2_P5.08mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "DuJRfxSqsS")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Screw_Terminal_01x02"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "661011bc-a956-5fb2-a11d-b4a2b8ba5ffe"))
+    (comp
+      (ref "J5")
+      (value "MAINS_3P4W_110_600V_VEN")
+      (description "")
+      (footprint "TerminalBlock:TerminalBlock_bornier-4_P5.08mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "TerminalBlock:TerminalBlock_bornier-4_P5.08mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "BPhyTavQ7f")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Screw_Terminal_01x04"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "5cb6b759-332a-5e32-91a3-e7ae9ddcc9a4"))
+    (comp
+      (ref "MOV1")
+      (value "S14K680")
+      (description "")
+      (footprint "Varistor_THT:RV_Disc_D14mm_W3.5mm_P7.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Varistor_THT:RV_Disc_D14mm_W3.5mm_P7.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "ncPhzXWLOr")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Varistor"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b65dbbe1-a77d-5494-a2e3-32276edc6247"))
+    (comp
+      (ref "MOV2")
+      (value "S14K680")
+      (description "")
+      (footprint "Varistor_THT:RV_Disc_D14mm_W3.5mm_P7.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Varistor_THT:RV_Disc_D14mm_W3.5mm_P7.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "8Ms3whZq2d")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Varistor"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "17bd9460-b2a8-52d5-89db-8cbea36356d4"))
+    (comp
+      (ref "MOV3")
+      (value "S14K680")
+      (description "")
+      (footprint "Varistor_THT:RV_Disc_D14mm_W3.5mm_P7.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Varistor_THT:RV_Disc_D14mm_W3.5mm_P7.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "U_oCl0L0nm")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "Varistor"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "6378c367-7079-53ac-9db8-67a1a0dc07ea"))
+    (comp
+      (ref "RB1")
+      (value "13.0_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "uO4oRr7zER")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b1cbbf61-feb7-546f-83c6-e5cd67458384"))
+    (comp
+      (ref "RB2")
+      (value "13.0_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "NcAEeSoQeS")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "3f1c5e88-d3df-56bb-886a-c4eacdd3adcc"))
+    (comp
+      (ref "RB3")
+      (value "13.0_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "sqOQRaiJwu")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "420a5734-bed5-5b91-a25c-afa88ce0f489"))
+    (comp
+      (ref "RB4")
+      (value "13.0_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "sDlQROCNUN")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "2e228aab-b3b7-582f-9b91-e0463b8fc101"))
+    (comp
+      (ref "R_V1A")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "nt8xo4eVLr")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "af47bae8-9ac4-511b-adb1-ef1bf927b09e"))
+    (comp
+      (ref "R_V1B")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "FzqoFWQ_vZ")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "63fb39ae-8124-5d81-b2e2-41badcca6c1f"))
+    (comp
+      (ref "R_V1C")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "aq4h_tHOBY")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "b9c5217e-91e9-53b3-935b-be2ae410644e"))
+    (comp
+      (ref "R_V1D")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "T5FqiYFuRI")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "91d3c6d2-a53d-5ed7-8abc-3736e6d13984"))
+    (comp
+      (ref "R_V1E")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "PM015zmDlJ")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "a75c3dfc-2b0d-5a9d-bf9c-f2a4fb0fd267"))
+    (comp
+      (ref "R_V1_BOT")
+      (value "470_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "dpDqsyBHjM")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "a2907c10-5e64-5ca1-ae75-cd1f91c41945"))
+    (comp
+      (ref "R_V2A")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "3YsIvtioEw")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "8cfbcc29-0d54-55ed-9d74-b83fdb5dcff1"))
+    (comp
+      (ref "R_V2B")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "svHaRksqV5")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "2d0cf168-31de-55b8-900c-7393d4abecfd"))
+    (comp
+      (ref "R_V2C")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "gDJf_r6kZr")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "448c5159-909d-51e4-aaa8-060814c0d5f5"))
+    (comp
+      (ref "R_V2D")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "Tl9gsNMkzL")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "43b53c56-42d0-5a92-8542-67e2d9c56765"))
+    (comp
+      (ref "R_V2E")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "p_p2Hk8fge")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "8a538cd5-d601-5d82-8005-250d8028762f"))
+    (comp
+      (ref "R_V2_BOT")
+      (value "470_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "y2uHRoeXpI")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "ec84a4b9-65f4-576a-afc8-d33df915f74a"))
+    (comp
+      (ref "R_V3A")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "7yx19mFceu")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "710866e8-f8a0-5f19-9b93-575d41ac210a"))
+    (comp
+      (ref "R_V3B")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "7pTC8ywx1T")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "ffe7d394-c4fc-549b-b40a-7afd020d4463"))
+    (comp
+      (ref "R_V3C")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "0qznRUT6Ah")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "111da679-4109-53c3-92f2-478c0c56dcdf"))
+    (comp
+      (ref "R_V3D")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "Ny1zeLGdlQ")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "44fd6f93-c9b0-59b1-bd02-2241671f3283"))
+    (comp
+      (ref "R_V3E")
+      (value "150k_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_1206_3216Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_1206_3216Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "apWJnoxXOG")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "f7361c64-6eec-5ee6-adfb-7364f8851826"))
+    (comp
+      (ref "R_V3_BOT")
+      (value "470_0.1%")
+      (description "")
+      (footprint "Resistor_SMD:R_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "xYM6UVoATx")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "73efb458-0432-54b5-a799-2881c06a04cb"))
+    (comp
+      (ref "R_VF1")
+      (value "1k_1%")
+      (description "")
+      (footprint "Resistor_SMD:R_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "CivRS61d_e")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "73177811-43de-5757-a082-90781142cda9"))
+    (comp
+      (ref "R_VF2")
+      (value "1k_1%")
+      (description "")
+      (footprint "Resistor_SMD:R_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "swHa9jNIZY")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "e5b21464-be38-5b13-a181-cb361ab40b30"))
+    (comp
+      (ref "R_VF3")
+      (value "1k_1%")
+      (description "")
+      (footprint "Resistor_SMD:R_0805_2012Metric")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Resistor_SMD:R_0805_2012Metric")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "3yyu25WFZR")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "R"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "daa0fbe1-5005-5cc9-8776-b06fa73d2627"))
+    (comp
+      (ref "U1")
+      (value "ATM90E36A-AU")
+      (description "")
+      (footprint "Package_QFP:TQFP-48_7x7mm_P0.5mm")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_QFP:TQFP-48_7x7mm_P0.5mm")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "X5BbpvmxiQ")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "ATM90E36A"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "17d2ec12-a652-5a4b-90d1-2398f8ef6b3f"))
+    (comp
+      (ref "U2")
+      (value "ESP32-WROOM-32E")
+      (description "")
+      (footprint "RF_Module:ESP32-WROOM-32")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "RF_Module:ESP32-WROOM-32")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "rWKYjYmVtl")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "ESP32-WROOM-32"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "011c1dce-518b-5bc5-87a8-f0ccfb67834a"))
+    (comp
+      (ref "U3")
+      (value "AMS1117-3.3")
+      (description "")
+      (footprint "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
+      (fields
+        (field
+          (name "Description"))
+        (field
+          (name "Footprint") "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
+        (field
+          (name "Datasheet"))
+        (field
+          (name "SKiDL Tag") "KEl514kEeD")
+        (field
+          (name "SKiDL Line") "aero_synthesizer.py:38"))
+      (libsource
+        (lib "AeroCustom")
+        (part "AMS1117-3.3"))
+      (sheetpath
+        (names "/")
+        (tstamps "/"))
+      (component_classes)
+      (tstamps "085de3f3-06f6-572f-9db5-bd462613f0a2")))
+  (nets
+    (net
+      (code 1)
+      (name "+3.3V")
+      (class "Default")
+      (node
+        (ref "C3")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "C4")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "C5")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "33")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U3")
+        (pin "2")
+        (pintype "INPUT")))
+    (net
+      (code 2)
+      (name "AGND")
+      (class "Default")
+      (node
+        (ref "C1")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "C2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "C_VF1")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "C_VF2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "C_VF3")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1_BOT")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2_BOT")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3_BOT")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "12")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "14")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "16")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "18")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "2")
+        (pintype "INPUT")))
+    (net
+      (code 3)
+      (name "ATM_IRQ0")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "25")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "33")
+        (pintype "INPUT")))
+    (net
+      (code 4)
+      (name "ATM_IRQ1")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "26")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "36")
+        (pintype "INPUT")))
+    (net
+      (code 5)
+      (name "ATM_WARN")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "27")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "26")
+        (pintype "INPUT")))
+    (net
+      (code 6)
+      (name "GND")
+      (class "Default")
+      (node
+        (ref "C3")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "C4")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "C5")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "19")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "32")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "15")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "38")
+        (pintype "INPUT"))
+      (node
+        (ref "U3")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 7)
+      (name "I1N")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "RB1")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "4")
+        (pintype "INPUT")))
+    (net
+      (code 8)
+      (name "I1P")
+      (class "Default")
+      (node
+        (ref "J1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "RB1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "3")
+        (pintype "INPUT")))
+    (net
+      (code 9)
+      (name "I2N")
+      (class "Default")
+      (node
+        (ref "J2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "RB2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "6")
+        (pintype "INPUT")))
+    (net
+      (code 10)
+      (name "I2P")
+      (class "Default")
+      (node
+        (ref "J2")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "RB2")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "5")
+        (pintype "INPUT")))
+    (net
+      (code 11)
+      (name "I3N")
+      (class "Default")
+      (node
+        (ref "J3")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "RB3")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "8")
+        (pintype "INPUT")))
+    (net
+      (code 12)
+      (name "I3P")
+      (class "Default")
+      (node
+        (ref "J3")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "RB3")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "7")
+        (pintype "INPUT")))
+    (net
+      (code 13)
+      (name "INN")
+      (class "Default")
+      (node
+        (ref "J4")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "RB4")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "10")
+        (pintype "INPUT")))
+    (net
+      (code 14)
+      (name "INP")
+      (class "Default")
+      (node
+        (ref "J4")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "RB4")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "9")
+        (pintype "INPUT")))
+    (net
+      (code 15)
+      (name "MAINS_L1")
+      (class "Default")
+      (node
+        (ref "J5")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "MOV1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1A")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 16)
+      (name "MAINS_L2")
+      (class "Default")
+      (node
+        (ref "J5")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "MOV2")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2A")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 17)
+      (name "MAINS_L3")
+      (class "Default")
+      (node
+        (ref "J5")
+        (pin "3")
+        (pintype "INPUT"))
+      (node
+        (ref "MOV3")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3A")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 18)
+      (name "MAINS_NEUTRAL")
+      (class "Default")
+      (node
+        (ref "J5")
+        (pin "4")
+        (pintype "INPUT"))
+      (node
+        (ref "MOV1")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "MOV2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "MOV3")
+        (pin "2")
+        (pintype "INPUT")))
+    (net
+      (code 19)
+      (name "SPI_CS")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "34")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "29")
+        (pintype "INPUT")))
+    (net
+      (code 20)
+      (name "SPI_MISO")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "37")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "31")
+        (pintype "INPUT")))
+    (net
+      (code 21)
+      (name "SPI_MOSI")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "36")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "37")
+        (pintype "INPUT")))
+    (net
+      (code 22)
+      (name "SPI_SCLK")
+      (class "Default")
+      (node
+        (ref "U1")
+        (pin "35")
+        (pintype "INPUT"))
+      (node
+        (ref "U2")
+        (pin "30")
+        (pintype "INPUT")))
+    (net
+      (code 23)
+      (name "V1P_FILTERED")
+      (class "Default")
+      (node
+        (ref "C_VF1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_VF1")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "13")
+        (pintype "INPUT")))
+    (net
+      (code 24)
+      (name "V1_DIV_NODE1")
+      (class "Default")
+      (node
+        (ref "R_V1A")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1B")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 25)
+      (name "V1_DIV_NODE2")
+      (class "Default")
+      (node
+        (ref "R_V1B")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1C")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 26)
+      (name "V1_DIV_NODE3")
+      (class "Default")
+      (node
+        (ref "R_V1C")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1D")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 27)
+      (name "V1_DIV_NODE4")
+      (class "Default")
+      (node
+        (ref "R_V1D")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1E")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 28)
+      (name "V1_DIV_TAP")
+      (class "Default")
+      (node
+        (ref "R_V1E")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V1_BOT")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_VF1")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 29)
+      (name "V2P_FILTERED")
+      (class "Default")
+      (node
+        (ref "C_VF2")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_VF2")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "15")
+        (pintype "INPUT")))
+    (net
+      (code 30)
+      (name "V2_DIV_NODE1")
+      (class "Default")
+      (node
+        (ref "R_V2A")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2B")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 31)
+      (name "V2_DIV_NODE2")
+      (class "Default")
+      (node
+        (ref "R_V2B")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2C")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 32)
+      (name "V2_DIV_NODE3")
+      (class "Default")
+      (node
+        (ref "R_V2C")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2D")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 33)
+      (name "V2_DIV_NODE4")
+      (class "Default")
+      (node
+        (ref "R_V2D")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2E")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 34)
+      (name "V2_DIV_TAP")
+      (class "Default")
+      (node
+        (ref "R_V2E")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V2_BOT")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_VF2")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 35)
+      (name "V3P_FILTERED")
+      (class "Default")
+      (node
+        (ref "C_VF3")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_VF3")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "17")
+        (pintype "INPUT")))
+    (net
+      (code 36)
+      (name "V3_DIV_NODE1")
+      (class "Default")
+      (node
+        (ref "R_V3A")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3B")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 37)
+      (name "V3_DIV_NODE2")
+      (class "Default")
+      (node
+        (ref "R_V3B")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3C")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 38)
+      (name "V3_DIV_NODE3")
+      (class "Default")
+      (node
+        (ref "R_V3C")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3D")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 39)
+      (name "V3_DIV_NODE4")
+      (class "Default")
+      (node
+        (ref "R_V3D")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3E")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 40)
+      (name "V3_DIV_TAP")
+      (class "Default")
+      (node
+        (ref "R_V3E")
+        (pin "2")
+        (pintype "INPUT"))
+      (node
+        (ref "R_V3_BOT")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "R_VF3")
+        (pin "1")
+        (pintype "INPUT")))
+    (net
+      (code 41)
+      (name "VREF")
+      (class "Default")
+      (node
+        (ref "C1")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "C2")
+        (pin "1")
+        (pintype "INPUT"))
+      (node
+        (ref "U1")
+        (pin "11")
+        (pintype "INPUT")))))

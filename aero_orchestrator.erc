@@ -1,0 +1,218 @@
+ERC WARNING: No drivers for net V3_DIV_TAP.
+ERC WARNING: Insufficient drive current on net V3_DIV_TAP for pin INPUT pin 1/~ of R/R_VF3.
+ERC WARNING: Insufficient drive current on net V3_DIV_TAP for pin INPUT pin 1/~ of R/R_V3_BOT.
+ERC WARNING: Insufficient drive current on net V3_DIV_TAP for pin INPUT pin 2/~ of R/R_V3E.
+ERC WARNING: No drivers for net V3_DIV_NODE4.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE4 for pin INPUT pin 1/~ of R/R_V3E.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE4 for pin INPUT pin 2/~ of R/R_V3D.
+ERC WARNING: No drivers for net MAINS_L1.
+ERC WARNING: Insufficient drive current on net MAINS_L1 for pin INPUT pin 1/~ of R/R_V1A.
+ERC WARNING: Insufficient drive current on net MAINS_L1 for pin INPUT pin 1/~ of Varistor/MOV1.
+ERC WARNING: Insufficient drive current on net MAINS_L1 for pin INPUT pin 1/Pin_1 of Screw_Terminal_01x04/J5.
+ERC WARNING: No drivers for net I2P.
+ERC WARNING: Insufficient drive current on net I2P for pin INPUT pin 1/~ of R/RB2.
+ERC WARNING: Insufficient drive current on net I2P for pin INPUT pin 1/Pin_1 of Screw_Terminal_01x02/J2.
+ERC WARNING: Insufficient drive current on net I2P for pin INPUT pin 5/I2P of ATM90E36A/U1.
+ERC WARNING: No drivers for net V1_DIV_NODE2.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE2 for pin INPUT pin 2/~ of R/R_V1B.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE2 for pin INPUT pin 1/~ of R/R_V1C.
+ERC WARNING: No drivers for net MAINS_NEUTRAL.
+ERC WARNING: Insufficient drive current on net MAINS_NEUTRAL for pin INPUT pin 2/~ of Varistor/MOV2.
+ERC WARNING: Insufficient drive current on net MAINS_NEUTRAL for pin INPUT pin 2/~ of Varistor/MOV3.
+ERC WARNING: Insufficient drive current on net MAINS_NEUTRAL for pin INPUT pin 2/~ of Varistor/MOV1.
+ERC WARNING: Insufficient drive current on net MAINS_NEUTRAL for pin INPUT pin 4/Pin_4 of Screw_Terminal_01x04/J5.
+ERC WARNING: No drivers for net SPI_SCLK.
+ERC WARNING: Insufficient drive current on net SPI_SCLK for pin INPUT pin 30/IO18 of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net SPI_SCLK for pin INPUT pin 35/SCLK of ATM90E36A/U1.
+ERC WARNING: No drivers for net V2_DIV_NODE1.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE1 for pin INPUT pin 2/~ of R/R_V2A.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE1 for pin INPUT pin 1/~ of R/R_V2B.
+ERC WARNING: No drivers for net ATM_IRQ1.
+ERC WARNING: Insufficient drive current on net ATM_IRQ1 for pin INPUT pin 26/IRQ1 of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net ATM_IRQ1 for pin INPUT pin 36/IO22 of ESP32-WROOM-32/U2.
+ERC WARNING: No drivers for net V1P_FILTERED.
+ERC WARNING: Insufficient drive current on net V1P_FILTERED for pin INPUT pin 2/~ of R/R_VF1.
+ERC WARNING: Insufficient drive current on net V1P_FILTERED for pin INPUT pin 1/~ of C/C_VF1.
+ERC WARNING: Insufficient drive current on net V1P_FILTERED for pin INPUT pin 13/V1P of ATM90E36A/U1.
+ERC WARNING: No drivers for net V2P_FILTERED.
+ERC WARNING: Insufficient drive current on net V2P_FILTERED for pin INPUT pin 15/V2P of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net V2P_FILTERED for pin INPUT pin 2/~ of R/R_VF2.
+ERC WARNING: Insufficient drive current on net V2P_FILTERED for pin INPUT pin 1/~ of C/C_VF2.
+ERC WARNING: No drivers for net SPI_MISO.
+ERC WARNING: Insufficient drive current on net SPI_MISO for pin INPUT pin 31/IO19 of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net SPI_MISO for pin INPUT pin 37/SDO of ATM90E36A/U1.
+ERC WARNING: No drivers for net V2_DIV_TAP.
+ERC WARNING: Insufficient drive current on net V2_DIV_TAP for pin INPUT pin 2/~ of R/R_V2E.
+ERC WARNING: Insufficient drive current on net V2_DIV_TAP for pin INPUT pin 1/~ of R/R_V2_BOT.
+ERC WARNING: Insufficient drive current on net V2_DIV_TAP for pin INPUT pin 1/~ of R/R_VF2.
+ERC WARNING: No drivers for net MAINS_L2.
+ERC WARNING: Insufficient drive current on net MAINS_L2 for pin INPUT pin 2/Pin_2 of Screw_Terminal_01x04/J5.
+ERC WARNING: Insufficient drive current on net MAINS_L2 for pin INPUT pin 1/~ of R/R_V2A.
+ERC WARNING: Insufficient drive current on net MAINS_L2 for pin INPUT pin 1/~ of Varistor/MOV2.
+ERC WARNING: No drivers for net V1_DIV_TAP.
+ERC WARNING: Insufficient drive current on net V1_DIV_TAP for pin INPUT pin 1/~ of R/R_V1_BOT.
+ERC WARNING: Insufficient drive current on net V1_DIV_TAP for pin INPUT pin 2/~ of R/R_V1E.
+ERC WARNING: Insufficient drive current on net V1_DIV_TAP for pin INPUT pin 1/~ of R/R_VF1.
+ERC WARNING: No drivers for net V2_DIV_NODE2.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE2 for pin INPUT pin 1/~ of R/R_V2C.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE2 for pin INPUT pin 2/~ of R/R_V2B.
+ERC WARNING: No drivers for net GND.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 1/GND of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 38/GND of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 2/~ of C/C5.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 32/DGND of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 1/GND of AMS1117-3.3/U3.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 2/~ of C/C4.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 15/GND of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 2/~ of C/C3.
+ERC WARNING: Insufficient drive current on net GND for pin INPUT pin 19/DGND of ATM90E36A/U1.
+ERC WARNING: No drivers for net V3P_FILTERED.
+ERC WARNING: Insufficient drive current on net V3P_FILTERED for pin INPUT pin 1/~ of C/C_VF3.
+ERC WARNING: Insufficient drive current on net V3P_FILTERED for pin INPUT pin 17/V3P of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net V3P_FILTERED for pin INPUT pin 2/~ of R/R_VF3.
+ERC WARNING: No drivers for net SPI_CS.
+ERC WARNING: Insufficient drive current on net SPI_CS for pin INPUT pin 34/CS of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net SPI_CS for pin INPUT pin 29/IO5 of ESP32-WROOM-32/U2.
+ERC WARNING: No drivers for net I3P.
+ERC WARNING: Insufficient drive current on net I3P for pin INPUT pin 1/~ of R/RB3.
+ERC WARNING: Insufficient drive current on net I3P for pin INPUT pin 7/I3P of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net I3P for pin INPUT pin 1/Pin_1 of Screw_Terminal_01x02/J3.
+ERC WARNING: No drivers for net ATM_WARN.
+ERC WARNING: Insufficient drive current on net ATM_WARN for pin INPUT pin 27/WARNOUT of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net ATM_WARN for pin INPUT pin 26/IO4 of ESP32-WROOM-32/U2.
+ERC WARNING: No drivers for net I2N.
+ERC WARNING: Insufficient drive current on net I2N for pin INPUT pin 6/I2N of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net I2N for pin INPUT pin 2/~ of R/RB2.
+ERC WARNING: Insufficient drive current on net I2N for pin INPUT pin 2/Pin_2 of Screw_Terminal_01x02/J2.
+ERC WARNING: No drivers for net V3_DIV_NODE3.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE3 for pin INPUT pin 2/~ of R/R_V3C.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE3 for pin INPUT pin 1/~ of R/R_V3D.
+ERC WARNING: No drivers for net V2_DIV_NODE3.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE3 for pin INPUT pin 1/~ of R/R_V2D.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE3 for pin INPUT pin 2/~ of R/R_V2C.
+ERC WARNING: No drivers for net VREF.
+ERC WARNING: Insufficient drive current on net VREF for pin INPUT pin 1/~ of C/C1.
+ERC WARNING: Insufficient drive current on net VREF for pin INPUT pin 11/VREF of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net VREF for pin INPUT pin 1/~ of C/C2.
+ERC WARNING: No drivers for net SPI_MOSI.
+ERC WARNING: Insufficient drive current on net SPI_MOSI for pin INPUT pin 36/SDI of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net SPI_MOSI for pin INPUT pin 37/IO23 of ESP32-WROOM-32/U2.
+ERC WARNING: No drivers for net INP.
+ERC WARNING: Insufficient drive current on net INP for pin INPUT pin 1/Pin_1 of Screw_Terminal_01x02/J4.
+ERC WARNING: Insufficient drive current on net INP for pin INPUT pin 1/~ of R/RB4.
+ERC WARNING: Insufficient drive current on net INP for pin INPUT pin 9/I4P of ATM90E36A/U1.
+ERC WARNING: No drivers for net MAINS_L3.
+ERC WARNING: Insufficient drive current on net MAINS_L3 for pin INPUT pin 1/~ of Varistor/MOV3.
+ERC WARNING: Insufficient drive current on net MAINS_L3 for pin INPUT pin 1/~ of R/R_V3A.
+ERC WARNING: Insufficient drive current on net MAINS_L3 for pin INPUT pin 3/Pin_3 of Screw_Terminal_01x04/J5.
+ERC WARNING: No drivers for net V2_DIV_NODE4.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE4 for pin INPUT pin 1/~ of R/R_V2E.
+ERC WARNING: Insufficient drive current on net V2_DIV_NODE4 for pin INPUT pin 2/~ of R/R_V2D.
+ERC WARNING: No drivers for net AGND.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/AGND of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of C/C2.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 12/AGND of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of C/C_VF3.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of C/C1.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of C/C_VF2.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of R/R_V3_BOT.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 18/V3N of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of R/R_V2_BOT.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of R/R_V1_BOT.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 16/V2N of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 14/V1N of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net AGND for pin INPUT pin 2/~ of C/C_VF1.
+ERC WARNING: No drivers for net I1N.
+ERC WARNING: Insufficient drive current on net I1N for pin INPUT pin 2/~ of R/RB1.
+ERC WARNING: Insufficient drive current on net I1N for pin INPUT pin 2/Pin_2 of Screw_Terminal_01x02/J1.
+ERC WARNING: Insufficient drive current on net I1N for pin INPUT pin 4/I1N of ATM90E36A/U1.
+ERC WARNING: No drivers for net I3N.
+ERC WARNING: Insufficient drive current on net I3N for pin INPUT pin 2/Pin_2 of Screw_Terminal_01x02/J3.
+ERC WARNING: Insufficient drive current on net I3N for pin INPUT pin 2/~ of R/RB3.
+ERC WARNING: Insufficient drive current on net I3N for pin INPUT pin 8/I3N of ATM90E36A/U1.
+ERC WARNING: No drivers for net V3_DIV_NODE1.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE1 for pin INPUT pin 1/~ of R/R_V3B.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE1 for pin INPUT pin 2/~ of R/R_V3A.
+ERC WARNING: No drivers for net ATM_IRQ0.
+ERC WARNING: Insufficient drive current on net ATM_IRQ0 for pin INPUT pin 33/IO21 of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net ATM_IRQ0 for pin INPUT pin 25/IRQ0 of ATM90E36A/U1.
+ERC WARNING: No drivers for net INN.
+ERC WARNING: Insufficient drive current on net INN for pin INPUT pin 10/I4N of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net INN for pin INPUT pin 2/Pin_2 of Screw_Terminal_01x02/J4.
+ERC WARNING: Insufficient drive current on net INN for pin INPUT pin 2/~ of R/RB4.
+ERC WARNING: No drivers for net I1P.
+ERC WARNING: Insufficient drive current on net I1P for pin INPUT pin 1/Pin_1 of Screw_Terminal_01x02/J1.
+ERC WARNING: Insufficient drive current on net I1P for pin INPUT pin 3/I1P of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net I1P for pin INPUT pin 1/~ of R/RB1.
+ERC WARNING: No drivers for net V3_DIV_NODE2.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE2 for pin INPUT pin 1/~ of R/R_V3C.
+ERC WARNING: Insufficient drive current on net V3_DIV_NODE2 for pin INPUT pin 2/~ of R/R_V3B.
+ERC WARNING: No drivers for net V1_DIV_NODE4.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE4 for pin INPUT pin 1/~ of R/R_V1E.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE4 for pin INPUT pin 2/~ of R/R_V1D.
+ERC WARNING: No drivers for net +3.3V.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 1/~ of C/C4.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 1/~ of C/C3.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 1/~ of C/C5.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 2/3V3 of ESP32-WROOM-32/U2.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 2/VO of AMS1117-3.3/U3.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 33/DVDD of ATM90E36A/U1.
+ERC WARNING: Insufficient drive current on net +3.3V for pin INPUT pin 1/AVDD of ATM90E36A/U1.
+ERC WARNING: No drivers for net V1_DIV_NODE1.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE1 for pin INPUT pin 2/~ of R/R_V1A.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE1 for pin INPUT pin 1/~ of R/R_V1B.
+ERC WARNING: No drivers for net V1_DIV_NODE3.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE3 for pin INPUT pin 2/~ of R/R_V1C.
+ERC WARNING: Insufficient drive current on net V1_DIV_NODE3 for pin INPUT pin 1/~ of R/R_V1D.
+ERC WARNING: Unconnected pin: INPUT pin 20/OSCI of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 21/OSCO of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 22/ZX0 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 23/ZX1 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 24/ZX2 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 28/CF1 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 29/CF2 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 30/CF3 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 31/CF4 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 38/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 39/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 40/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 41/RESET of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 42/PM0 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 43/PM1 of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 44/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 45/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 46/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 47/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 48/NC of ATM90E36A/U1.
+ERC WARNING: Unconnected pin: INPUT pin 3/EN of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 4/SENSOR_VP of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 5/SENSOR_VN of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 6/IO34 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 7/IO35 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 8/IO32 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 9/IO33 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 10/IO25 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 11/IO26 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 12/IO27 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 13/IO14 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 14/IO12 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 16/IO13 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 17/SHD/SD2 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 18/SWP/SD3 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 19/SCS/CMD of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 20/SCK/CLK of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 21/SDO/SD0 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 22/SDI/SD1 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 23/IO15 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 24/IO2 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 25/IO0 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 27/IO16 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 28/IO17 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 32/NC of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 34/RXD0 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 35/TXD0 of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 39/GND_PAD of ESP32-WROOM-32/U2.
+ERC WARNING: Unconnected pin: INPUT pin 3/VI of AMS1117-3.3/U3.
+ERC INFO: 215 warnings found while running ERC.
+ERC INFO: 0 errors found while running ERC.
+

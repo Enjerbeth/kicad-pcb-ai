@@ -92,7 +92,12 @@ class AeroOrchestrator:
         try:
             synth.apply_layout_and_route(self.pcb_filename)
         except subprocess.CalledProcessError as e:
-            error_str = e.stderr.decode('utf-8', errors='ignore') if e.stderr else str(e)
+            if isinstance(e.stderr, bytes):
+                error_str = e.stderr.decode('utf-8', errors='ignore')
+            elif isinstance(e.stderr, str):
+                error_str = e.stderr
+            else:
+                error_str = str(e)
             
             # Traducción heurística de colisiones o fallos de Freerouting
             code = "DRC_POST_ROUTE"
