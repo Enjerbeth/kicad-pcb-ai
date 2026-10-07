@@ -1,0 +1,308 @@
+{
+  "project_metadata": {
+    "name": "aero_energy_meter_3p4w",
+    "units": "mm",
+    "board_outline": {
+      "width": 120.0,
+      "height": 90.0
+    },
+    "layer_count": 2,
+    "copper_pours": ["GND", "AGND"],
+    "design_rules": {
+      "default_track_width": 0.25,
+      "power_track_width": 0.6,
+      "min_clearance": 0.2,
+      "via_diameter": 0.8,
+      "via_drill": 0.4,
+      "differential_pairs": [
+        {"net_p": "I1P", "net_n": "I1N"},
+        {"net_p": "I2P", "net_n": "I2N"},
+        {"net_p": "I3P", "net_n": "I3N"},
+        {"net_p": "INP", "net_n": "INN"}
+      ]
+    },
+    "footprint_policy": "prefer_smd"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "part_def": "AeroCustom:ATM90E36A",
+      "footprint": "Package_QFP:TQFP-48_7x7mm_P0.5mm",
+      "value": "ATM90E36A-AU",
+      "circuit_group": "AFE_METROLOGY"
+    },
+    {
+      "ref": "U2",
+      "part_def": "AeroCustom:ESP32-WROOM-32",
+      "footprint": "RF_Module:ESP32-WROOM-32",
+      "value": "ESP32-WROOM-32E",
+      "circuit_group": "MCU_DIGITAL"
+    },
+    {
+      "ref": "U3",
+      "part_def": "AeroCustom:AMS1117-3.3",
+      "footprint": "Package_TO_SOT_SMD:SOT-223-3_TabPin2",
+      "value": "AMS1117-3.3",
+      "circuit_group": "POWER_REG"
+    },
+    {
+      "ref": "J1",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT1_PhaseA",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J2",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT2_PhaseB",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J3",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT3_PhaseC",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J4",
+      "part_def": "AeroCustom:Screw_Terminal_01x02",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-2_P5.08mm",
+      "value": "CT4_Neutral",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "J5",
+      "part_def": "AeroCustom:Screw_Terminal_01x04",
+      "footprint": "TerminalBlock:TerminalBlock_bornier-4_P5.08mm",
+      "value": "VOLTAGE_3P4W",
+      "circuit_group": "VOLTAGE_INPUTS"
+    },
+    {
+      "ref": "R1",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0_0.1%",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "R2",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0_0.1%",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "R3",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0_0.1%",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "R4",
+      "part_def": "AeroCustom:R",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "value": "13.0_0.1%",
+      "circuit_group": "CT_INPUTS"
+    },
+    {
+      "ref": "C1",
+      "part_def": "AeroCustom:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "value": "4.7uF",
+      "circuit_group": "AFE_METROLOGY"
+    },
+    {
+      "ref": "C2",
+      "part_def": "AeroCustom:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "value": "100nF",
+      "circuit_group": "AFE_METROLOGY"
+    }
+  ],
+  "nets": [
+    {
+      "name": "+3.3V",
+      "net_class": "power",
+      "connections": [
+        {"ref": "U3", "pin": "VO"},
+        {"ref": "U1", "pin": "AVDD"},
+        {"ref": "U1", "pin": "DVDD"},
+        {"ref": "U2", "pin": "3V3"}
+      ]
+    },
+    {
+      "name": "GND",
+      "net_class": "power",
+      "connections": [
+        {"ref": "U3", "pin": "GND"},
+        {"ref": "U1", "pin": "DGND"},
+        {"ref": "U2", "pin": "GND"}
+      ]
+    },
+    {
+      "name": "AGND",
+      "net_class": "power",
+      "connections": [
+        {"ref": "U1", "pin": "AGND"},
+        {"ref": "C1", "pin": "2"},
+        {"ref": "C2", "pin": "2"}
+      ]
+    },
+    {
+      "name": "VREF",
+      "connections": [
+        {"ref": "U1", "pin": "VREF"},
+        {"ref": "C1", "pin": "1"},
+        {"ref": "C2", "pin": "1"}
+      ]
+    },
+    {
+      "name": "I1P",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J1", "pin": "Pin_1"},
+        {"ref": "R1", "pin": "1"},
+        {"ref": "U1", "pin": "I1P"}
+      ]
+    },
+    {
+      "name": "I1N",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J1", "pin": "Pin_2"},
+        {"ref": "R1", "pin": "2"},
+        {"ref": "U1", "pin": "I1N"}
+      ]
+    },
+    {
+      "name": "I2P",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J2", "pin": "Pin_1"},
+        {"ref": "R2", "pin": "1"},
+        {"ref": "U1", "pin": "I2P"}
+      ]
+    },
+    {
+      "name": "I2N",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J2", "pin": "Pin_2"},
+        {"ref": "R2", "pin": "2"},
+        {"ref": "U1", "pin": "I2N"}
+      ]
+    },
+    {
+      "name": "I3P",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J3", "pin": "Pin_1"},
+        {"ref": "R3", "pin": "1"},
+        {"ref": "U1", "pin": "I3P"}
+      ]
+    },
+    {
+      "name": "I3N",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J3", "pin": "Pin_2"},
+        {"ref": "R3", "pin": "2"},
+        {"ref": "U1", "pin": "I3N"}
+      ]
+    },
+    {
+      "name": "INP",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J4", "pin": "Pin_1"},
+        {"ref": "R4", "pin": "1"},
+        {"ref": "U1", "pin": "I4P"}
+      ]
+    },
+    {
+      "name": "INN",
+      "net_class": "differential",
+      "connections": [
+        {"ref": "J4", "pin": "Pin_2"},
+        {"ref": "R4", "pin": "2"},
+        {"ref": "U1", "pin": "I4N"}
+      ]
+    },
+    {
+      "name": "SPI_SCLK",
+      "connections": [
+        {"ref": "U2", "pin": "IO18"},
+        {"ref": "U1", "pin": "SCLK"}
+      ]
+    },
+    {
+      "name": "SPI_MISO",
+      "connections": [
+        {"ref": "U2", "pin": "IO19"},
+        {"ref": "U1", "pin": "SDO"}
+      ]
+    },
+    {
+      "name": "SPI_MOSI",
+      "connections": [
+        {"ref": "U2", "pin": "IO23"},
+        {"ref": "U1", "pin": "SDI"}
+      ]
+    },
+    {
+      "name": "SPI_CS",
+      "connections": [
+        {"ref": "U2", "pin": "IO5"},
+        {"ref": "U1", "pin": "CS"}
+      ]
+    },
+    {
+      "name": "ATM_IRQ0",
+      "connections": [
+        {"ref": "U2", "pin": "IO21"},
+        {"ref": "U1", "pin": "IRQ0"}
+      ]
+    },
+    {
+      "name": "ATM_IRQ1",
+      "connections": [
+        {"ref": "U2", "pin": "IO22"},
+        {"ref": "U1", "pin": "IRQ1"}
+      ]
+    },
+    {
+      "name": "ATM_WARN",
+      "connections": [
+        {"ref": "U2", "pin": "IO4"},
+        {"ref": "U1", "pin": "WARNOUT"}
+      ]
+    }
+  ],
+  "layout_strategies": [
+    {
+      "strategy_id": "AFE_CLUSTER",
+      "strategy_type": "bounding_box_cluster",
+      "target_refs": ["U1", "R1", "R2", "R3", "R4", "C1", "C2"],
+      "parameters": {"spacing": 2.5},
+      "collision_fallback": "spiral_expansion"
+    },
+    {
+      "strategy_id": "MCU_CLUSTER",
+      "strategy_type": "bounding_box_cluster",
+      "target_refs": ["U2", "U3"],
+      "parameters": {"spacing": 3.0},
+      "collision_fallback": "spiral_expansion"
+    },
+    {
+      "strategy_id": "TERMINAL_CLUSTER",
+      "strategy_type": "edge_align",
+      "target_refs": ["J1", "J2", "J3", "J4", "J5"],
+      "parameters": {"edge": "left", "pitch": 8.0},
+      "collision_fallback": "shift_along_edge"
+    }
+  ]
+}

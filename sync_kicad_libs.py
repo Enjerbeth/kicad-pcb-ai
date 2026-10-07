@@ -87,8 +87,9 @@ def parse_kicad_sym(filepath, conn):
         raw_sym_name = symbol_blocks[i]
         sym_body = symbol_blocks[i+1]
         
-        # Limpiar el nombre (quitar el prefijo de librería si lo tiene)
+        # Limpiar el nombre (quitar el prefijo de librería y sufijos de unidades _1_1 si los tiene)
         sym_name = raw_sym_name.split(':')[-1] if ':' in raw_sym_name else raw_sym_name
+        sym_name = re.sub(r'_\d+_\d+$', '', sym_name)
         
         # Manejo de herencia (extends)
         extends_match = re.search(r'\(extends\s+"([^"]+)"\)', sym_body)
